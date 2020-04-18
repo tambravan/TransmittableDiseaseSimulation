@@ -1,4 +1,4 @@
-# Transimittable Disease Simulation: Generating Heatmaps for Diseases Based on Various Real World Factors
+# Transmittable Disease Simulation: Generating Heatmaps for Diseases Based on Various Real World Factors
 A C++ project by Tejas Ambravan
 
 ## Project Summary
