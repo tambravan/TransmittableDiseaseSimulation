@@ -2,6 +2,8 @@
 
 #include "my_app.h"
 
+#include "../blocks/Cinder-ImGui/include/CinderImGui.h"
+
 #include <cinder/app/App.h>
 
 

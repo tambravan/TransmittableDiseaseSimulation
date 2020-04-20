@@ -65,3 +65,7 @@ This Transmittable Disease Simulation will leverage the following libraries:
   * Infectious Disease Modelling
     * This is a model which provides some framework on spread of diseases
     * Infectious Disease modelling can be read more about [here](https://github.com/temp3rr0r/InfectiousDiseaseModelling).
+  * Cinder Block: Cinder-ImGui
+    * ImGui is a graphical user interface which works with Cinder. It simplifies the process of creating user interfaces and improves visualization and debugging.
+    * ImGui is suited for real time 3D applications, full screen applications, games, etc.
+    * More about ImGui can be read about [here(GitHub)](https://github.com/simongeilfus/Cinder-ImGui).
