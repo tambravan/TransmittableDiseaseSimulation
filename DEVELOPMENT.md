@@ -11,3 +11,6 @@
   - Start working on configuration for ImGui
   - Import the ImGui repository
   - Start debugging build error
+  
+- **04/20/2020** Fix and configure ImGui
+  - Add sliders, text, etc to experiment with features
