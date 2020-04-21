@@ -22,6 +22,7 @@ class MyApp : public cinder::app::App {
 
  private:
   float gamespeed_slider_;
+  TextureRef worldmap;
 };
 
 }  // namespace myapp
