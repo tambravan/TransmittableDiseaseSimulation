@@ -69,3 +69,109 @@ This Transmittable Disease Simulation will leverage the following libraries:
     * ImGui is a graphical user interface which works with Cinder. It simplifies the process of creating user interfaces and improves visualization and debugging.
     * ImGui is suited for real time 3D applications, full screen applications, games, etc.
     * More about ImGui can be read about [here(GitHub)](https://github.com/simongeilfus/Cinder-ImGui).
+
+### Regional Divisions
+These are the regions the world will be divided into for simplicity
+* North America
+    * Canada
+    * USA
+    * Mexico
+    * Caribbean
+    * Central America
+* South America
+    * Brazil
+    * Northen South America
+        * Colombua
+        * Venezuela
+        * Guyana
+        * Suriname
+    * Eastern South America
+        * Peru
+        * Ecuador
+        * Bolivia
+    * Southern South America
+        * Argentina
+        * Chile
+        * Paraguay
+        * Uruguay
+* Europe
+    * Scandinavia
+        * Norway
+        * Sweden
+        * Finland
+        * Denmark
+    * Russia/Lithania/Latvia/Estonia
+    * Germany/Poland/Belarus
+    * UK
+    * France/Netherlands/Belgium/Switzerland
+    * Spain/Portugal
+    * Italy
+    * Ukraine/Romania
+    * Central Europe
+        * Austria
+        * Hungary
+        * Czech Republic
+        * Hungary
+        * Slovakia
+    * Eastern Europe
+        * Slovenia
+        * Croatia
+        * Bosnia and Herzegovina
+        * Serbia
+        * Bulgaria
+        * Greece
+        * Etc.
+* Africa
+    * Southern Africa
+        * South of 7°S latitude
+    * Central Africa
+        * Somalia
+        * Ethiopia
+        * Kenya
+        * DRC
+        * Gabon
+        * CAR
+        * Cameroon
+        * ROC
+        * Uganda
+        * Rwanda
+    * West Africa
+        * West of 10°E longitude
+    * North Africa
+        * Egypt
+        * Libya
+        * Chad
+        * Sudan
+        * Eritrea
+* Asia
+    * Turkey
+    * Middle East
+        * Saudi Arabia
+        * Yemen
+        * Oman
+        * UAE
+        * Qatar
+        * Israel
+        * Jordan
+        * Iraq
+        * Lebanon
+        * Syria
+        * Kuwait
+    * Iran
+    * Kazakhstan
+    * India/Nepal/Bangladesh/Sri Lanka
+    * Pakistan/Afghanistan
+    * Turkmenistan/Uzbekistan/Kyrgyzstan/Tajikistan
+    * Mongolia
+    * China
+    * Japan
+    * South East Asia
+        * Myanmar
+        * Thailand
+        * Laos
+        * Cambodia
+        * Vietnam
+        * Malaysia
+        * Singapore
+    * Indonesia/Brunei/PNG
+* Australia/NZ/Pacific Islands
