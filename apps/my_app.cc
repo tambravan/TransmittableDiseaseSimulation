@@ -16,7 +16,7 @@ namespace myapp {
 using cinder::app::KeyEvent;
 
 MyApp::MyApp() {
-  gamespeed_slider_ = 1;
+  speed_slider_ = 1;
 }
 
 void MyApp::setup() {
@@ -30,7 +30,7 @@ void MyApp::update() {
 
 void MyApp::draw() {
   cinder::gl::clear(cinder::Color(0, 0, 0));
-  ImGui::SliderFloat("Game Speed Multiplier", &gamespeed_slider_, .25, 2);
+  ImGui::SliderFloat("Speed Multiplier", &speed_slider_, .25, 2);
   ci::Rectf map_bounds(0, 0, worldmap->getWidth() / 3, worldmap->getHeight() / 3);
   ci::gl::draw(worldmap, map_bounds);
 }

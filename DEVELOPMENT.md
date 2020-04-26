@@ -14,3 +14,6 @@
   
 - **04/20/2020** Fix and configure ImGui
   - Add sliders, text, etc to experiment with features
+
+- **04/25/2020** Find existing data for disease vulnerability
+  - Add citation to README and update factors shown

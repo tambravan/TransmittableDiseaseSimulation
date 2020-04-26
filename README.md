@@ -11,65 +11,56 @@ A C++ project by Tejas Ambravan
 ## Background
   I have always had an interest in the spreading of major diseases and past pandemics, ranging from extremely early plagues such as the Plague of Justinian in the 6th century all the way to recent outbreaks such as SARS, Swine Flu, and COVID-19. Current world events allow an opportunity to channel this interest into a C++ project.
   
-## Main Spread Factors 
-### Travel
+## Main Spread Factors (By Country)
+These factors can be read about in more detail with descriptions [here](https://www.rand.org/pubs/research_reports/RR1605.html). Data was collected through this study, and all credit to them for calculating the indices.
+### Population/Quality of life
+  * Population Density
+  * Urbanization
+  * Population Growth
+  * Education/Literacy
+  * Population mobility
+    * High mobility increase disease susceptability
+  * Water, sanitation, and hygiene
+  * Human Rights
   
-  * Flights
-    * Domestic flight Travel
-    * International flight Travel
-    * High traffic airports
-  * Water
-    * Common cargo ports
-    * Cruise liners
-    * Passenger boats
-  * Ground Vehicles
-    * Car travel between states, countries
+### Medical Capabilities
+  * Medical care workforce
+  * Medical expenditures
+  * Medical infrastructure
+  * Overall health status
+  * Health services/primary care delivery
+  * Basic public health
+  * International Health Regulation core capacity
+  
+### Social/Economic/Political status
+  * [GHSA](https://www.thecompassforsbc.org/sbcc-tools/ghsa-action-packages) Action Packages
+  * Governance
+  * Corruption
+  * Service provision
+  * Decentralization
+  * Democracy
+  * Government Stability
+  * Conflict
 
-### Risk By Country
-  * Economy
-    * Strength of economy
-    * Ability to fund relief checks
-    * Loss of business, jobs, and unemployment
-  * Quality of Life
-    * Population density
-    * Cleanliness and hygiene
-    * Average age
-    * Life expectancy
-  * Environment
-    * Temperature
-    * Possible vectors (e.g. mosquitos in warmer climates)
-    
-### Infectivity
-  * Basic repriduction number, R<sub>0</sub>, which represents the expected number of cases genereated by one case
-  * Death rates
-  * Detectability (symptoms)
-
-### Preventative Measures
-  * Travel Bans
-    * Closing air and sea ports
-    * Blocking domestic travel
-  * Quarantine and testing
-    * Testing and availability by country
-    * Forced/self quarantine
-  * Research
-    * Research funding and subsidies
-    
-## External Libraries
+### Environment
+  * Precipitation/Rainfall
+  * Temperature
+  * Land Use
+   
+## External Libraries and Sources
 This Transmittable Disease Simulation will leverage the following libraries:
   * Cinder
     * Cinder is a free open source library for professional quality creative and visual coding in C++
     * Cinder can be read more about [here](https://libcinder.org/).
-  * EpiFire
-    * EpiFire is a C++ library for contact network epidemiology.
-    * More information about EpiFire is located [here](https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-13-76) and [here (GitHub)](https://github.com/tjhladish/EpiFire).
-  * Infectious Disease Modelling
-    * This is a model which provides some framework on spread of diseases
-    * Infectious Disease modelling can be read more about [here](https://github.com/temp3rr0r/InfectiousDiseaseModelling).
   * Cinder Block: Cinder-ImGui
     * ImGui is a graphical user interface which works with Cinder. It simplifies the process of creating user interfaces and improves visualization and debugging.
     * ImGui is suited for real time 3D applications, full screen applications, games, etc.
-    * More about ImGui can be read about [here(GitHub)](https://github.com/simongeilfus/Cinder-ImGui).
-
+    * More about ImGui can be read about [here](https://github.com/simongeilfus/Cinder-ImGui) (GitHub).
+  * Research study: Identifying Future Disease Hot Spots
+    * This is a study done by Melinda Moore, Bill Gelfeld, Adeyemi Theophilus Okunogbe, and Christopher Paul
+    * This study takes into account the current state of every country and gives a ranking (disease vulnerability index) and a score normalized from 0 to 1, inclusive ([0, 1])
+    * More can be read about [here](https://www.rand.org/pubs/research_reports/RR1605.html)
+    * The calculated index takes into account all factors listed above
 ### Regional Divisions
 These are the regions the world will be divided into for simplicity
 * North America

@@ -21,7 +21,7 @@ class MyApp : public cinder::app::App {
   void keyDown(cinder::app::KeyEvent) override;
 
  private:
-  float gamespeed_slider_;
+  float speed_slider_;
   ci::gl::TextureRef worldmap;
 };
 
