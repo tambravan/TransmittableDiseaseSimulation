@@ -25,6 +25,8 @@ class Simulation : public cinder::app::App {
  private:
   //Texture for the worldmap_ drawn in background
   ci::gl::TextureRef worldmap_;
+  //Texture for airport logos
+  ci::gl::TextureRef airport_;
   //R0 value for the disease
   float r_0_;
   //Slider to accelerate or slow down simulation speed

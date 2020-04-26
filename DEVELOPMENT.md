@@ -20,3 +20,8 @@
 
 - **04/25/2020** Find existing data for disease vulnerability
   - Add citation to README and update factors shown
+  
+- **04/26/2020** Develop the UI With ImGui
+  - Add sliders for more factors
+  - Start/Pause button
+  - Experiment with adding ports to the map

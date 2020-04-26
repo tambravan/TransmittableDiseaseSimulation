@@ -22,6 +22,8 @@ Simulation::Simulation() {
   r_0_ = 5.7;
   //Set initial value for medical precations to 5
   med_efforts_ = 5;
+  //The simulation should start paused
+  is_paused_ = true;
 }
 
 void Simulation::setup() {
@@ -30,21 +32,33 @@ void Simulation::setup() {
 
   //Load the worldmap_ from the filepath it is stored at
   //Relative paths did not work here, neither did loadAsset
-  worldmap_ = cinder::gl::Texture::create(cinder::loadImage("C:/Users/tejas/Downloads/InternetDownloads/cinder_0.9.2_vc2015/cinder_0.9.2_vc2015/MyProjects/TransmittableDiseaseSimulation/assets/worldmap.png"));
+  worldmap_ = ci::gl::Texture::create(ci::loadImage("C:/Users/tejas/Downloads/InternetDownloads/cinder_0.9.2_vc2015/cinder_0.9.2_vc2015/MyProjects/TransmittableDiseaseSimulation/assets/worldmap.png"));
+
+  //Load the airport map
+  airport_ = ci::gl::Texture::create(ci::loadImage("C:/Users/tejas/Downloads/InternetDownloads/cinder_0.9.2_vc2015/cinder_0.9.2_vc2015/MyProjects/TransmittableDiseaseSimulation/assets/airport.png"));
 }
 
 void Simulation::update() {
-
+  //Simulation should only run if it is not paused
+  if (!is_paused_) {
+    //Run the simulation
+  }
 }
 
 void Simulation::draw() {
-  //Clear the UI
+  //Clear
   cinder::gl::clear(cinder::Color(0, 0, 0));
 
   //Create bounds for background map image and draw it in cinder
   ci::Rectf map_bounds(0, 0, worldmap_->getWidth() / 3,
                        worldmap_->getHeight() / 3);
   ci::gl::draw(worldmap_, map_bounds);
+
+
+  //Draw Airports
+  //Chicago ORD
+  ci::Rectf test(100, 300, 120, 320);
+  ci::gl::draw(airport_, test);
 
   //Create sliders for the UI
   ImGui::SliderFloat("Speed Multiplier", &speed_slider_, .25, 2);
