@@ -12,7 +12,7 @@
 
 namespace engine {
   std::map<std::string, float> vuln_index_;
-  std::map<std::string, float> adjusted_vuln_index;
+  std::map<std::string, float> adjusted_vuln_index_;
 
   void PopulateVuln();
 }

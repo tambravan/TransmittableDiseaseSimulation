@@ -221,9 +221,8 @@ namespace engine {
     vuln_index_.insert(std::pair<std::string, float>("Norway", 1.0));
 
     //Adjust these from [0,1] to [.25, .75]
-    std::copy(adjusted_vuln_index, vuln_index_);
-    for (auto pair : adjusted_vuln_index) {
-      pair.second = (pair.second / 2) + .25
+    for (auto pair : vuln_index_) {
+      adjusted_vuln_index_.insert(std::pair<std::string, float>(pair.first, pair.second / 2 + 1));
     }
   }
 }
