@@ -25,3 +25,7 @@
   - Add sliders for more factors
   - Start/Pause button
   - Experiment with adding ports to the map
+  
+- **04/27/2020** Add indices for disease vulnerability
+  - Basic python script to print out all the map.insert() statements
+  - Populate the indices from 0-1 and adjust them to .25-.75

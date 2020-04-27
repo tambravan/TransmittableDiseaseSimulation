@@ -57,8 +57,10 @@ void Simulation::draw() {
 
   //Draw Airports
   //Chicago ORD
-  ci::Rectf test(100, 300, 120, 320);
+  ci::Rectf test(235, 200, 245, 210);
+  ci::Rectf test2(291, 204, 301, 214);
   ci::gl::draw(airport_, test);
+  ci::gl::draw(airport_, test2);
 
   //Create sliders for the UI
   ImGui::SliderFloat("Speed Multiplier", &speed_slider_, .25, 2);
