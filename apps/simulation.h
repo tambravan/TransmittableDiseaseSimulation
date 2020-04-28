@@ -8,6 +8,7 @@
 #include "cinder/ImageIo.h"
 #include <cinder/gl/Texture.h>
 
+
 using namespace cinder::gl;
 
 namespace simulation {
@@ -35,6 +36,10 @@ class Simulation : public cinder::app::App {
   int med_efforts_;
   //Bool representing if the game is paused
   bool is_paused_;
+
+  data::Data d;
+
+
 };
 
 }  // namespace simulation
