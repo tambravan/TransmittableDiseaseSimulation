@@ -29,3 +29,6 @@
 - **04/27/2020** Add indices for disease vulnerability
   - Basic python script to print out all the map.insert() statements
   - Populate the indices from 0-1 and adjust them to .25-.75
+  
+- **04/27/2020** Add data.h/.cc for storing vulnerability and airport data
+  - Populates and stores data about airports and vulnerability

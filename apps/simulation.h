@@ -8,6 +8,7 @@
 #include "cinder/ImageIo.h"
 #include <cinder/gl/Texture.h>
 
+#include "data.h"
 
 using namespace cinder::gl;
 

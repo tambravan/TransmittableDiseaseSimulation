@@ -7,8 +7,6 @@
 #include <cinder/gl/draw.h>
 #include <cinder/gl/wrapper.h>
 
-#include <vector>
-
 #include "CinderImGui.h"
 
 namespace simulation {
@@ -59,34 +57,11 @@ void Simulation::draw() {
   ci::gl::draw(worldmap_, map_bounds);
 
 
+  //Populate the map with airports
   for (auto port : d.airports) {
     ci::Rectf rect(port.at(0), port.at(1), port.at(2), port.at(3));
     ci::gl::draw(airport_, rect);
   }
-
-  //Draw Airports
-  //ci::Rectf ord(235, 200, 245, 210);
-  //ci::gl::draw(airport_, ord);
-  ci::Rectf jfk(291, 204, 301, 214);
-  ci::gl::draw(airport_, jfk);
-  ci::Rectf atl(252, 243, 262, 253);
-  ci::gl::draw(airport_, atl);
-  ci::Rectf pek(1101, 204, 1111, 214);
-  ci::gl::draw(airport_, pek);
-  ci::Rectf lax(93, 235, 103, 245);
-  ci::gl::draw(airport_, lax);
-  ci::Rectf hnd(1207, 220, 1217, 230);
-  ci::gl::draw(airport_, hnd);
-  ci::Rectf dxb(848, 288, 858, 298);
-  ci::gl::draw(airport_, dxb);
-  ci::Rectf lhr(608, 141, 618, 151);
-  ci::gl::draw(airport_, lhr);
-  ci::Rectf pvg(1136, 250, 1146, 260);
-  ci::gl::draw(airport_, pvg);
-  ci::Rectf cdg(623, 161, 633, 171);
-  ci::gl::draw(airport_, cdg);
-
-
 
   //Create sliders for the UI
   ImGui::SliderFloat("Speed Multiplier", &speed_slider_, .25, 2);
