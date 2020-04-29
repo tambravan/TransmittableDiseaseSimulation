@@ -15,9 +15,9 @@ namespace data {
 class Data {
  public:
   //Map from strings to floats of the overall calculated index of disease spread per country
-  std::map<std::string, float> vuln_index_;
+  std::map<char*, float> vuln_index_;
   //Same as above, but adjusted to .25-.75 instead of 0-1
-  std::map<std::string, float> adjusted_vuln_index_;
+  std::map<char*, float> adjusted_vuln_index_;
   //List of all the airports by coordinates (adjusted from image)
   std::vector<std::array<int, 4>> airports;
 
@@ -25,7 +25,7 @@ class Data {
   void PopulateVuln();
   //Populates airports_
   void PopulateAirports();
-
+  //Default constructor
   Data();
 };
 

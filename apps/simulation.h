@@ -22,7 +22,7 @@ class Simulation : public cinder::app::App {
   void draw() override;
   void keyDown(cinder::app::KeyEvent) override;
   //Pauses the simulation, handler for the start/pause button
-  void PauseGame();
+  void StartPause();
 
  private:
   //Texture for the worldmap_ drawn in background
@@ -37,9 +37,14 @@ class Simulation : public cinder::app::App {
   int med_efforts_;
   //Bool representing if the game is paused
   bool is_paused_;
-
+  //Instance of the Data class with all the airport/index data
   data::Data d;
+  //Int representing the starting country selected
+  int starting_country_;
+  //Countries vector
+  std::vector<char*> countries_;
 
+  char* c_ar[];
 
 };
 

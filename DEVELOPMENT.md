@@ -32,3 +32,7 @@
   
 - **04/27/2020** Add data.h/.cc for storing vulnerability and airport data
   - Populates and stores data about airports and vulnerability
+  
+- **04/28/2020** Work with ImGui to create a listbox for displaying data
+  - List box should show starting countries and the stats when selected
+  - Need to figure out issues with types (ImGui uses char* instead of std::string)

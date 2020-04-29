@@ -8,6 +8,7 @@
 #include <cinder/gl/wrapper.h>
 
 #include "CinderImGui.h"
+#include "engine.h"
 
 namespace simulation {
 
@@ -22,6 +23,8 @@ Simulation::Simulation() {
   med_efforts_ = 5;
   //The simulation should start paused
   is_paused_ = true;
+
+  starting_country_ = 0;
 }
 
 void Simulation::setup() {
@@ -31,6 +34,17 @@ void Simulation::setup() {
   //Populate the data
   d.PopulateVuln();
   d.PopulateAirports();
+
+  //Get a list of countries
+  for (auto& pair : d.adjusted_vuln_index_) {
+    countries_.push_back(pair.first);
+  }
+
+  for (int i = 0; i < countries_.size(); i++) {
+    c_ar[i] = countries_[i];
+  }
+
+  //memcpy_s(c_ar, 10, country_arr, 10);
 
   //Load the worldmap_ from the filepath it is stored at
   //Relative paths did not work here, neither did loadAsset
@@ -70,11 +84,24 @@ void Simulation::draw() {
 
   //Create pause/resume button
   if (ImGui::Button("Start/Pause")) {
-    PauseGame();
+    StartPause();
+  }
+
+  //Create listbox for start location
+  //ImGui::ListBox("Starting Country", &starting_country_, c_ar, countries_.size(),8);
+
+  //Get the selected country and display it along with its vulnerability index
+  //char* country = countries_[starting_country_];
+  //ImGui::Text(country);
+  //ImGui::Text(std::to_string(d.adjusted_vuln_index_[country]).data());
+
+  //Create start button
+  if (ImGui::Button("Initialize/Restart game with selected location")) {
+    //engine::Begin(country);
   }
 }
 
-void Simulation::PauseGame() {
+void Simulation::StartPause() {
   is_paused_ = !is_paused_;
 }
 
