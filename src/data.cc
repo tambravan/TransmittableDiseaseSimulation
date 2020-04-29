@@ -93,10 +93,100 @@ void Data::PopulateRegions() {
   southern_africa.push_back("Zambia");
   southern_africa.push_back("Tanzania");
 
+  western_africa.push_back("Nigeria");
+  western_africa.push_back("Niger");
+  western_africa.push_back("Tunisia");
+  western_africa.push_back("Algeria");
+  western_africa.push_back("Morocco");
+  western_africa.push_back("Cote d'Ivoire");
+  western_africa.push_back("Sierra Leone");
+  western_africa.push_back("Guinea");
+  western_africa.push_back("Guinea-Bissau");
+  western_africa.push_back("Equatorial Guinea");
+  western_africa.push_back("Liberia");
+  western_africa.push_back("Ghana");
+  western_africa.push_back("Togo");
+  western_africa.push_back("Benin");
+  western_africa.push_back("Mali");
+  western_africa.push_back("Mauritania");
+  western_africa.push_back("The Gambia");
+  western_africa.push_back("Senegal");
 
+  north_africa.push_back("Egypt");
+  north_africa.push_back("South Sudan");
+  north_africa.push_back("Sudan");
+  north_africa.push_back("Libya");
+  north_africa.push_back("Chad");
+  north_africa.push_back("Djibouti");
+  north_africa.push_back("Eritrea");
+
+  middle_east.push_back("Kuwait");
+  middle_east.push_back("Saudi Arabia");
+  middle_east.push_back("Yemen");
+  middle_east.push_back("Oman");
+  middle_east.push_back("United Arab Emirates");
+  middle_east.push_back("Lebanon");
+  middle_east.push_back("Israel");
+  middle_east.push_back("Iraq");
+  middle_east.push_back("Syria");
+  middle_east.push_back("Jordan");
+  middle_east.push_back("Qatar");
+
+  india.push_back("India");
+  india.push_back("Nepal");
+  india.push_back("Bangladesh");
+  india.push_back("Bhutan");
+  india.push_back("Sri Lanka");
+
+  pakistan.push_back("Pakistan");
+  pakistan.push_back("Afghanistan");
+
+  stans.push_back("Turkmenistan");
+  stans.push_back("Tajikistan");
+  stans.push_back("Uzbekistan");
+  stans.push_back("Kyrgyzstan");
+
+  southeast_asia.push_back("Singapore");
+  southeast_asia.push_back("Cambodia");
+  southeast_asia.push_back("Thailand");
+  southeast_asia.push_back("Myanmar");
+  southeast_asia.push_back("Cambodia");
+  southeast_asia.push_back("Laos");
+  southeast_asia.push_back("Philippines");
+  southeast_asia.push_back("Malaysia");
+
+  indonesia.push_back("Indonesia");
+  indonesia.push_back("Papua New Guinea");
+  indonesia.push_back("Brunei");
+
+  australia.push_back("Australia");
+  australia.push_back("New Zealand");
+
+  china.push_back("China");
+  china.push_back("North Korea");
+  china.push_back("South Korea");
+
+  central_america.push_back("Belize");
+  central_america.push_back("Guatemala");
+  central_america.push_back("Honduras");
+  central_america.push_back("Nicaragua");
+  central_america.push_back("Panama");
+  central_america.push_back("El Salvador");
+  central_america.push_back("Costa Rica");
+
+  caribbean.push_back("Jamaica");
+  caribbean.push_back("Cuba");
+  caribbean.push_back("Bahamas");
+  caribbean.push_back("Dominican Republic");
+  caribbean.push_back("Haiti");
+
+  uk.push_back("United Kingdom");
+  uk.push_back("Ireland");
+  uk.push_back("Iceland");
 }
-void Data::PopulateAirports() {
 
+
+void Data::PopulateAirports() {
   airports.push_back(std::array<int, 4>{252, 243, 262, 253}); //ATL
   airports.push_back(std::array<int, 4>{1101, 204, 1111, 214}); //PEK
   airports.push_back(std::array<int, 4>{93, 235, 103, 245}); //LAX
@@ -126,6 +216,7 @@ void Data::PopulateAirports() {
   airports.push_back(std::array<int, 4>{1080, 260, 1090, 270}); //CTU
 
 }
+
 void Data::PopulateVuln() {
   vuln_index_.insert(std::pair<char*, float>("Somalia", 0.0));
   vuln_index_.insert(std::pair<char*, float>("Central African Republic", 0.000061));
@@ -348,12 +439,12 @@ void Data::PopulateVuln() {
   }
 
   //Calculate averages and add them to the vuln by region map
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
+  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", ComputeAvgScore(uk)));
+  vuln_by_region_.insert(std::pair<char*, float>("Northern South America", ComputeAvgScore(northern_south_america)));
+  vuln_by_region_.insert(std::pair<char*, float>("Western South America", ComputeAvgScore(western_south_america)));
+  vuln_by_region_.insert(std::pair<char*, float>("Southern South America", ComputeAvgScore(southern_south_america)));
+  vuln_by_region_.insert(std::pair<char*, float>("Caribbean", ComputeAvgScore(caribbean)));
+  vuln_by_region_.insert(std::pair<char*, float>("Central America", ComputeAvgScore(central_america)));
   vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
   vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
   vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
@@ -381,4 +472,15 @@ void Data::PopulateVuln() {
   vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
   vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
 }
+
+float Data::ComputeAvgScore(const std::vector<char*>& region) {
+  float sum = 0;
+
+  for (auto& country : region) {
+    sum += vuln_index_.at(country);
+  }
+
+  return sum / region.size();
+}
+
 }

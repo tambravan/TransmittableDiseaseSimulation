@@ -103,8 +103,7 @@ std::string CategorizeLoc(std::string country) {
   } else if (country == "Indonesia" || country == "Brunei" ||
              country == "Papua New Guinea") {
     to_return = "Indonesia";
-  } else if (country == "Australia" || country == "New Zealand" ||
-             country == "Marshall Islands") {
+  } else if (country == "Australia" || country == "New Zealand") {
     to_return = "Australia";
   } else if (country == "China" || country == "North Korea" || country == "South Korea") {
     to_return = "China";
@@ -113,7 +112,7 @@ std::string CategorizeLoc(std::string country) {
     to_return = "Central America";
   } else if (country == "Jamaica" || country == "Cuba" || country == "Bahamas" || country == "Haiti" || country == "Dominican Republic") {
     to_return = "Caribbean";
-  } else if (country == "United Kingdom" || country == "Iceland") {
+  } else if (country == "United Kingdom" || country == "Iceland" || country == "Ireland") {
     to_return = "UK";
   } else {
       to_return = country;

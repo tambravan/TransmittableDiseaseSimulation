@@ -61,6 +61,8 @@ class Data {
   void PopulateAirports();
   //Populates regions vectors
   void PopulateRegions();
+  //Computes average vuln score of a region
+  float ComputeAvgScore(const std::vector<char*>& region);
 };
 
 }
