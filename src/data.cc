@@ -434,19 +434,21 @@ void Data::PopulateVuln() {
   vuln_index_.insert(std::pair<char*, float>("Norway", 1.0));
 
   //Adjust these from [0,1] to [.25, .75]
-  for (auto pair : adjusted_vuln_index_) {
-    pair.second = (pair.second / 2) + .25;
+  for (auto pair : vuln_index_) {
+    adjusted_vuln_index_.insert(std::pair<char*, float>(pair.first, (pair.second / 2) + .25));
   }
 
+  //TODO: Do all of these with a for loop and then add in the single countries with a for loop as well (vector contains)
+  //TODO: Do this by putting all the country vectors in a vector
   //Calculate averages and add them to the vuln by region map
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", ComputeAvgScore(uk)));
-  vuln_by_region_.insert(std::pair<char*, float>("Northern South America", ComputeAvgScore(northern_south_america)));
-  vuln_by_region_.insert(std::pair<char*, float>("Western South America", ComputeAvgScore(western_south_america)));
-  vuln_by_region_.insert(std::pair<char*, float>("Southern South America", ComputeAvgScore(southern_south_america)));
-  vuln_by_region_.insert(std::pair<char*, float>("Caribbean", ComputeAvgScore(caribbean)));
-  vuln_by_region_.insert(std::pair<char*, float>("Central America", ComputeAvgScore(central_america)));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
+  //vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", ComputeAvgScore(uk)));
+  //vuln_by_region_.insert(std::pair<char*, float>("Northern South America", ComputeAvgScore(northern_south_america)));
+  //vuln_by_region_.insert(std::pair<char*, float>("Western South America", ComputeAvgScore(western_south_america)));
+  //vuln_by_region_.insert(std::pair<char*, float>("Southern South America", ComputeAvgScore(southern_south_america)));
+  //vuln_by_region_.insert(std::pair<char*, float>("Caribbean", ComputeAvgScore(caribbean)));
+  //vuln_by_region_.insert(std::pair<char*, float>("Central America", ComputeAvgScore(central_america)));
+  //vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
+  //vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
   vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
   vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
 

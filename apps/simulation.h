@@ -44,8 +44,6 @@ class Simulation : public cinder::app::App {
   //Countries vector
   std::vector<char*> countries_;
 
-  char* c_ar[];
-
 };
 
 }  // namespace simulation

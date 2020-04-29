@@ -41,3 +41,6 @@
   - Create a begin method and categorize method, which store the start location and reset all factors
   - Add to data struct vectors of groupings for countries
   - Comment out some countries in data that are small (e.g. vatican city/vanuatu/monaco etc.)
+  
+- **04/29/2020** Debug errors with ImGui ListBox
+  - Display list box of all countries

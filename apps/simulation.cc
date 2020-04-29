@@ -31,16 +31,10 @@ void Simulation::setup() {
   //Initialize ImGui
   ImGui::initialize();
 
-  //Get a list of countries
+  //Get a list of countries from adjusted_vuln_index_
   for (auto& pair : d.adjusted_vuln_index_) {
     countries_.push_back(pair.first);
   }
-
-  for (int i = 0; i < countries_.size(); i++) {
-    c_ar[i] = countries_[i];
-  }
-
-  //memcpy_s(c_ar, 10, country_arr, 10);
 
   //Load the worldmap_ from the filepath it is stored at
   //Relative paths did not work here, neither did loadAsset
@@ -84,7 +78,7 @@ void Simulation::draw() {
   }
 
   //Create listbox for start location
-  //ImGui::ListBox("Starting Country", &starting_country_, c_ar, countries_.size(),8);
+  ImGui::ListBox("Starting Country", &starting_country_, countries_.data(), countries_.size(),10);
 
   //Get the selected country and display it along with its vulnerability index
   //char* country = countries_[starting_country_];
