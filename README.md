@@ -71,12 +71,12 @@ These are the regions the world will be divided into for simplicity
     * Central America
 * South America
     * Brazil
-    * Northen South America
-        * Colombua
+    * Northern South America
+        * Colombia
         * Venezuela
         * Guyana
         * Suriname
-    * Eastern South America
+    * Western South America
         * Peru
         * Ecuador
         * Bolivia
@@ -91,7 +91,7 @@ These are the regions the world will be divided into for simplicity
         * Sweden
         * Finland
         * Denmark
-    * Russia/Lithania/Latvia/Estonia
+    * Russia/Lithuania/Latvia/Estonia
     * Germany/Poland/Belarus
     * UK
     * France/Netherlands/Belgium/Switzerland
@@ -102,7 +102,6 @@ These are the regions the world will be divided into for simplicity
         * Austria
         * Hungary
         * Czech Republic
-        * Hungary
         * Slovakia
     * Eastern Europe
         * Slovenia
