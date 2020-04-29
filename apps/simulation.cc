@@ -31,10 +31,6 @@ void Simulation::setup() {
   //Initialize ImGui
   ImGui::initialize();
 
-  //Populate the data
-  d.PopulateVuln();
-  d.PopulateAirports();
-
   //Get a list of countries
   for (auto& pair : d.adjusted_vuln_index_) {
     countries_.push_back(pair.first);

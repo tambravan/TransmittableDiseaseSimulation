@@ -36,3 +36,8 @@
 - **04/28/2020** Work with ImGui to create a listbox for displaying data
   - List box should show starting countries and the stats when selected
   - Need to figure out issues with types (ImGui uses char* instead of std::string)
+  
+- **04/28/2020** Create engine.cc/.h, the core of the game
+  - Create a begin method and categorize method, which store the start location and reset all factors
+  - Add to data struct vectors of groupings for countries
+  - Comment out some countries in data that are small (e.g. vatican city/vanuatu/monaco etc.)
