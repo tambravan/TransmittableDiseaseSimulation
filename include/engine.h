@@ -7,13 +7,15 @@
 
 #include <string>
 
+#include "data.h"
+
 namespace engine {
+
+//data::Data d;
 
 void Begin(char* start_loc);
 
-std::string CategorizeLoc(std::string country);
-
-std::string startloc;
+//std::string startloc;
 
 }
 

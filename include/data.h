@@ -54,6 +54,8 @@ class Data {
   std::vector<char*> caribbean;
   std::vector<char*> uk;
 
+  std::string CategorizeLoc(std::string country);
+
  private:
   //Populates vuln_index_ and adjusted_vuln_index_
   void PopulateVuln();

@@ -44,3 +44,5 @@
   
 - **04/29/2020** Debug errors with ImGui ListBox
   - Display list box of all countries
+  - Add functionality to dynamically change the displayed name and index in ImGui
+  - Refactor CategorizeLoc() to use created vectors

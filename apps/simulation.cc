@@ -8,7 +8,6 @@
 #include <cinder/gl/wrapper.h>
 
 #include "CinderImGui.h"
-#include "engine.h"
 
 namespace simulation {
 
@@ -81,9 +80,19 @@ void Simulation::draw() {
   ImGui::ListBox("Starting Country", &starting_country_, countries_.data(), countries_.size(),10);
 
   //Get the selected country and display it along with its vulnerability index
-  //char* country = countries_[starting_country_];
-  //ImGui::Text(country);
-  //ImGui::Text(std::to_string(d.adjusted_vuln_index_[country]).data());
+  char* country = countries_[starting_country_];
+  ImGui::Text(country);
+
+  //Get the adjusted index and display it with a label
+  std::string index_text = "Adjusted Index: " + std::to_string(d.adjusted_vuln_index_[country]);
+  ImGui::Text(index_text.data());
+
+  //Get the region and display it with a label
+  std::string region_label = "Region: " + d.CategorizeLoc(country);
+  ImGui::Text(region_label.data());
+
+  //Get the region index and display it with a label
+  std::string region_index = "Regional Index (Adjusted): ";
 
   //Create start button
   if (ImGui::Button("Initialize/Restart game with selected location")) {
