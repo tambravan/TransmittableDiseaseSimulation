@@ -15,56 +15,60 @@ namespace data {
 class Data {
  public:
   //Map from strings to floats of the overall calculated index of disease spread per country
-  std::map<char*, float> vuln_index_;
+  std::map<std::string, float> vuln_index_;
   //Same as above, but adjusted to .25-.75 instead of 0-1
-  std::map<char*, float> adjusted_vuln_index_;
+  std::map<std::string, float> adjusted_vuln_index_;
   //List of all the airports by coordinates (adjusted from image)
   std::vector<std::array<int, 4>> airports;
   //Map of average vulnerability indices after categorization
-  std::map<char*, float> vuln_by_region_;
+  std::map<std::string, float> vuln_by_region_;
+  //Map of region names as string to their vector
+  std::map<std::string, std::vector<std::string>> name_to_vec_;
 
   //Constructor calls populate methods
   Data();
 
   //All the regions, as vectors, with their respective countries
-  std::vector<char*> northern_south_america;
-  std::vector<char*> western_south_america;
-  std::vector<char*> southern_south_america;
-  std::vector<char*> scandinavia;
-  std::vector<char*> russia;
-  std::vector<char*> germany;
-  std::vector<char*> france;
-  std::vector<char*> spain;
-  std::vector<char*> ukraine;
-  std::vector<char*> central_europe;
-  std::vector<char*> eastern_europe;
-  std::vector<char*> central_africa;
-  std::vector<char*> southern_africa;
-  std::vector<char*> western_africa;
-  std::vector<char*> north_africa;
-  std::vector<char*> india;
-  std::vector<char*> middle_east;
-  std::vector<char*> pakistan;
-  std::vector<char*> stans;
-  std::vector<char*> southeast_asia;
-  std::vector<char*> indonesia;
-  std::vector<char*> australia;
-  std::vector<char*> central_america;
-  std::vector<char*> china;
-  std::vector<char*> caribbean;
-  std::vector<char*> uk;
+  std::vector<std::string> northern_south_america;
+  std::vector<std::string> western_south_america;
+  std::vector<std::string> southern_south_america;
+  std::vector<std::string> scandinavia;
+  std::vector<std::string> russia;
+  std::vector<std::string> germany;
+  std::vector<std::string> france;
+  std::vector<std::string> spain;
+  std::vector<std::string> ukraine;
+  std::vector<std::string> central_europe;
+  std::vector<std::string> eastern_europe;
+  std::vector<std::string> central_africa;
+  std::vector<std::string> southern_africa;
+  std::vector<std::string> western_africa;
+  std::vector<std::string> north_africa;
+  std::vector<std::string> india;
+  std::vector<std::string> middle_east;
+  std::vector<std::string> pakistan;
+  std::vector<std::string> stans;
+  std::vector<std::string> southeast_asia;
+  std::vector<std::string> indonesia;
+  std::vector<std::string> australia;
+  std::vector<std::string> central_america;
+  std::vector<std::string> china;
+  std::vector<std::string> caribbean;
+  std::vector<std::string> uk;
 
   std::string CategorizeLoc(std::string country);
 
  private:
   //Populates vuln_index_ and adjusted_vuln_index_
   void PopulateVuln();
+  //Populates vuln by region
+  void PopulateRegionVuln();
   //Populates airports_
   void PopulateAirports();
   //Populates regions vectors
   void PopulateRegions();
   //Computes average vuln score of a region
-  float ComputeAvgScore(const std::vector<char*>& region);
+  float ComputeAvgScore(const std::vector<std::string>& region);
 };
 
 }

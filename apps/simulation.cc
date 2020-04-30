@@ -32,7 +32,7 @@ void Simulation::setup() {
 
   //Get a list of countries from adjusted_vuln_index_
   for (auto& pair : d.adjusted_vuln_index_) {
-    countries_.push_back(pair.first);
+    countries_.push_back(pair.first.data());
   }
 
   //Load the worldmap_ from the filepath it is stored at
@@ -80,7 +80,7 @@ void Simulation::draw() {
   ImGui::ListBox("Starting Country", &starting_country_, countries_.data(), countries_.size(),10);
 
   //Get the selected country and display it along with its vulnerability index
-  char* country = countries_[starting_country_];
+  const char* country = countries_[starting_country_];
   ImGui::Text(country);
 
   //Get the adjusted index and display it with a label
@@ -92,10 +92,10 @@ void Simulation::draw() {
   ImGui::Text(region_label.data());
 
   //Get the region index and display it with a label
-  std::string region_index = "Regional Index (Adjusted): ";
-
+  std::string region_index = "Regional Index (Adjusted): " + std::to_string(d.vuln_by_region_.at(d.CategorizeLoc(countries_[starting_country_])));
+  ImGui::Text(region_index.data());
   //Create start button
-  if (ImGui::Button("Initialize/Restart game with selected location")) {
+  if (ImGui::Button("Initialize/Restart simulation with selected location")) {
     //engine::Begin(country);
   }
 }

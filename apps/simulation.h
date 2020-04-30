@@ -43,7 +43,7 @@ class Simulation : public cinder::app::App {
   //Int representing the starting country selected
   int starting_country_;
   //Countries vector
-  std::vector<char*> countries_;
+  std::vector<const char*> countries_;
 
 };
 

@@ -3,12 +3,15 @@
 //
 #include "data.h"
 
+#include <iostream>
+
 namespace data {
 
 Data::Data() {
   PopulateRegions();
   PopulateAirports();
   PopulateVuln();
+  PopulateRegionVuln();
 }
 
 void Data::PopulateRegions() {
@@ -92,6 +95,7 @@ void Data::PopulateRegions() {
   southern_africa.push_back("Malawi");
   southern_africa.push_back("Zambia");
   southern_africa.push_back("Tanzania");
+  southern_africa.push_back("Madagascar");
 
   western_africa.push_back("Nigeria");
   western_africa.push_back("Niger");
@@ -183,8 +187,36 @@ void Data::PopulateRegions() {
   uk.push_back("United Kingdom");
   uk.push_back("Ireland");
   uk.push_back("Iceland");
-}
 
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Northern South America", northern_south_america));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Southern South America", southern_south_america));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Western South America", western_south_america));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Scandinavia", scandinavia));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Russia Area", russia));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Germany Area", germany));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("France Area", france));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Spain Area", spain));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Ukraine Area", ukraine));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Central Europe", central_europe));
+
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Eastern Europe", eastern_europe));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Central Africa", central_africa));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Southern Africa", southern_africa));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Western Africa", western_africa));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("North Africa", north_africa));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Middle East", middle_east));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("India Area", india));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Pakistan Area", pakistan));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Stans", stans));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Southeast Asia", southeast_asia));
+
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Indonesia Area", indonesia));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Australia Area", australia));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("China Area", china));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Central America", central_america));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Caribbean", caribbean));
+  name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("UK", uk));
+}
 
 void Data::PopulateAirports() {
   airports.push_back(std::array<int, 4>{252, 243, 262, 253}); //ATL
@@ -218,271 +250,266 @@ void Data::PopulateAirports() {
 }
 
 void Data::PopulateVuln() {
-  vuln_index_.insert(std::pair<char*, float>("Somalia", 0.0));
-  vuln_index_.insert(std::pair<char*, float>("Central African Republic", 0.000061));
-  vuln_index_.insert(std::pair<char*, float>("Chad", 0.098450));
-  vuln_index_.insert(std::pair<char*, float>("South Sudan", 0.100836));
-  vuln_index_.insert(std::pair<char*, float>("Mauritania", 0.107294));
-  vuln_index_.insert(std::pair<char*, float>("Angola", 0.148414));
-  vuln_index_.insert(std::pair<char*, float>("Haiti", 0.149471));
-  vuln_index_.insert(std::pair<char*, float>("Afghanistan", 0.157034));
-  vuln_index_.insert(std::pair<char*, float>("Niger", 0.166531));
-  vuln_index_.insert(std::pair<char*, float>("Madagascar", 0.170787));
+  vuln_index_.insert(std::pair<std::string, float>("Somalia", 0.0));
+  vuln_index_.insert(
+      std::pair<std::string, float>("Central African Republic", 0.000061));
+  vuln_index_.insert(std::pair<std::string, float>("Chad", 0.098450));
+  vuln_index_.insert(std::pair<std::string, float>("South Sudan", 0.100836));
+  vuln_index_.insert(std::pair<std::string, float>("Mauritania", 0.107294));
+  vuln_index_.insert(std::pair<std::string, float>("Angola", 0.148414));
+  vuln_index_.insert(std::pair<std::string, float>("Haiti", 0.149471));
+  vuln_index_.insert(std::pair<std::string, float>("Afghanistan", 0.157034));
+  vuln_index_.insert(std::pair<std::string, float>("Niger", 0.166531));
+  vuln_index_.insert(std::pair<std::string, float>("Madagascar", 0.170787));
 
-  vuln_index_.insert(std::pair<char*, float>("Democratic Republic of the Congo", 0.181762));
-  vuln_index_.insert(std::pair<char*, float>("Mali", 0.184254));
-  vuln_index_.insert(std::pair<char*, float>("Guinea-Bissau", 0.181762));
-  vuln_index_.insert(std::pair<char*, float>("Benin", 0.206682));
-  vuln_index_.insert(std::pair<char*, float>("The Gambia", 0.207809));
-  vuln_index_.insert(std::pair<char*, float>("Liberia", 0.213114));
-  vuln_index_.insert(std::pair<char*, float>("Guinea", 0.213225));
-  //vuln_index_.insert(std::pair<char*, float>("Sao Tome and Principe", 0.223256));
-  vuln_index_.insert(std::pair<char*, float>("Sierra Leone", 0.223397));
-  vuln_index_.insert(std::pair<char*, float>("Burkina Faso", 0.231504));
+  vuln_index_.insert(
+      std::pair<std::string, float>("Democratic Republic of the Congo", 0.181762));
+  vuln_index_.insert(std::pair<std::string, float>("Mali", 0.184254));
+  vuln_index_.insert(std::pair<std::string, float>("Guinea-Bissau", 0.181762));
+  vuln_index_.insert(std::pair<std::string, float>("Benin", 0.206682));
+  vuln_index_.insert(std::pair<std::string, float>("The Gambia", 0.207809));
+  vuln_index_.insert(std::pair<std::string, float>("Liberia", 0.213114));
+  vuln_index_.insert(std::pair<std::string, float>("Guinea", 0.213225));
+  // vuln_index_.insert(std::pair<std::string, float>("Sao Tome and Principe", 0.223256));
+  vuln_index_.insert(std::pair<std::string, float>("Sierra Leone", 0.223397));
+  vuln_index_.insert(std::pair<std::string, float>("Burkina Faso", 0.231504));
 
-  //vuln_index_.insert(std::pair<char*, float>("Comoros", 0.238068));
-  vuln_index_.insert(std::pair<char*, float>("Yemen", 0.250277));
-  vuln_index_.insert(std::pair<char*, float>("Eritrea", 0.252978));
-  vuln_index_.insert(std::pair<char*, float>("Togo", 0.259396));
-  vuln_index_.insert(std::pair<char*, float>("Mozambique", 0.262501));
-  vuln_index_.insert(std::pair<char*, float>("Republic of the Congo", 0.268887));
-  vuln_index_.insert(std::pair<char*, float>("Nigeria", 0.270681));
-  vuln_index_.insert(std::pair<char*, float>("Cote d'Ivoire", 0.270743));
-  vuln_index_.insert(std::pair<char*, float>("Malawi", 0.279987));
-  vuln_index_.insert(std::pair<char*, float>("Sudan", 0.291580));
+  // vuln_index_.insert(std::pair<std::string, float>("Comoros", 0.238068));
+  vuln_index_.insert(std::pair<std::string, float>("Yemen", 0.250277));
+  vuln_index_.insert(std::pair<std::string, float>("Eritrea", 0.252978));
+  vuln_index_.insert(std::pair<std::string, float>("Togo", 0.259396));
+  vuln_index_.insert(std::pair<std::string, float>("Mozambique", 0.262501));
+  vuln_index_.insert(
+      std::pair<std::string, float>("Republic of the Congo", 0.268887));
+  vuln_index_.insert(std::pair<std::string, float>("Nigeria", 0.270681));
+  vuln_index_.insert(std::pair<std::string, float>("Cote d'Ivoire", 0.270743));
+  vuln_index_.insert(std::pair<std::string, float>("Malawi", 0.279987));
+  vuln_index_.insert(std::pair<std::string, float>("Sudan", 0.291580));
 
-  vuln_index_.insert(std::pair<char*, float>("Djibouti", 0.297892));
-  vuln_index_.insert(std::pair<char*, float>("Pakistan", 0.308544));
-  //vuln_index_.insert(std::pair<char*, float>("Timor-Leste", 0.310208));
-  vuln_index_.insert(std::pair<char*, float>("Senegal", 0.329156));
-  vuln_index_.insert(std::pair<char*, float>("Zimbabwe", 0.337478));
-  vuln_index_.insert(std::pair<char*, float>("Papua New Guinea", 0.339184));
-  vuln_index_.insert(std::pair<char*, float>("Tanzania", 0.340445));
-  vuln_index_.insert(std::pair<char*, float>("Lesotho", 0.344860));
-  //vuln_index_.insert(std::pair<char*, float>("Burundi", 0.354104));
-  vuln_index_.insert(std::pair<char*, float>("Laos", 0.355111));
+  vuln_index_.insert(std::pair<std::string, float>("Djibouti", 0.297892));
+  vuln_index_.insert(std::pair<std::string, float>("Pakistan", 0.308544));
+  // vuln_index_.insert(std::pair<std::string, float>("Timor-Leste", 0.310208));
+  vuln_index_.insert(std::pair<std::string, float>("Senegal", 0.329156));
+  vuln_index_.insert(std::pair<std::string, float>("Zimbabwe", 0.337478));
+  vuln_index_.insert(std::pair<std::string, float>("Papua New Guinea", 0.339184));
+  vuln_index_.insert(std::pair<std::string, float>("Tanzania", 0.340445));
+  vuln_index_.insert(std::pair<std::string, float>("Lesotho", 0.344860));
+  // vuln_index_.insert(std::pair<std::string, float>("Burundi", 0.354104));
+  vuln_index_.insert(std::pair<std::string, float>("Laos", 0.355111));
 
-  vuln_index_.insert(std::pair<char*, float>("Cambodia", 0.355133));
-  vuln_index_.insert(std::pair<char*, float>("Rwanda", 0.355300));
-  vuln_index_.insert(std::pair<char*, float>("Swaziland", 0.358470));
-  vuln_index_.insert(std::pair<char*, float>("Uganda", 0.365850));
-  //vuln_index_.insert(std::pair<char*, float>("Solomon Islands", 0.370311));
-  vuln_index_.insert(std::pair<char*, float>("North Korea", 0.374870));
-  vuln_index_.insert(std::pair<char*, float>("Ethiopia", 0.382021));
-  vuln_index_.insert(std::pair<char*, float>("Kenya", 0.385436));
-  //vuln_index_.insert(std::pair<char*, float>("Kiribati", 0.388403));
-  vuln_index_.insert(std::pair<char*, float>("Cameroon", 0.388770));
+  vuln_index_.insert(std::pair<std::string, float>("Cambodia", 0.355133));
+  vuln_index_.insert(std::pair<std::string, float>("Rwanda", 0.355300));
+  vuln_index_.insert(std::pair<std::string, float>("Swaziland", 0.358470));
+  vuln_index_.insert(std::pair<std::string, float>("Uganda", 0.365850));
+  // vuln_index_.insert(std::pair<std::string, float>("Solomon Islands", 0.370311));
+  vuln_index_.insert(std::pair<std::string, float>("North Korea", 0.374870));
+  vuln_index_.insert(std::pair<std::string, float>("Ethiopia", 0.382021));
+  vuln_index_.insert(std::pair<std::string, float>("Kenya", 0.385436));
+  // vuln_index_.insert(std::pair<std::string, float>("Kiribati", 0.388403));
+  vuln_index_.insert(std::pair<std::string, float>("Cameroon", 0.388770));
 
-  vuln_index_.insert(std::pair<char*, float>("Syria", 0.391337));
-  vuln_index_.insert(std::pair<char*, float>("Gabon", 0.402950));
-  vuln_index_.insert(std::pair<char*, float>("Nepal", 0.404405));
-  vuln_index_.insert(std::pair<char*, float>("Honduras", 0.407296));
-  vuln_index_.insert(std::pair<char*, float>("Zambia", 0.420459));
-  vuln_index_.insert(std::pair<char*, float>("Bangladesh", 0.422107));
-  //vuln_index_.insert(std::pair<char*, float>("Micronesia", 0.425305));
-  vuln_index_.insert(std::pair<char*, float>("Equatorial Guinea", 0.430054));
-  vuln_index_.insert(std::pair<char*, float>("Iraq", 0.432182));
-  vuln_index_.insert(std::pair<char*, float>("Myanmar", 0.448176));
+  vuln_index_.insert(std::pair<std::string, float>("Syria", 0.391337));
+  vuln_index_.insert(std::pair<std::string, float>("Gabon", 0.402950));
+  vuln_index_.insert(std::pair<std::string, float>("Nepal", 0.404405));
+  vuln_index_.insert(std::pair<std::string, float>("Honduras", 0.407296));
+  vuln_index_.insert(std::pair<std::string, float>("Zambia", 0.420459));
+  vuln_index_.insert(std::pair<std::string, float>("Bangladesh", 0.422107));
+  // vuln_index_.insert(std::pair<std::string, float>("Micronesia", 0.425305));
+  vuln_index_.insert(std::pair<std::string, float>("Equatorial Guinea", 0.430054));
+  vuln_index_.insert(std::pair<std::string, float>("Iraq", 0.432182));
+  vuln_index_.insert(std::pair<std::string, float>("Myanmar", 0.448176));
 
-  //vuln_index_.insert(std::pair<char*, float>("Palestine", 0.450415));
-  vuln_index_.insert(std::pair<char*, float>("Bhutan", 0.460880));
-  vuln_index_.insert(std::pair<char*, float>("Ghana", 0.462565));
-  vuln_index_.insert(std::pair<char*, float>("Guatemala", 0.477179));
-  //vuln_index_.insert(std::pair<char*, float>("Cape Verde", 0.486189));
-  vuln_index_.insert(std::pair<char*, float>("Turkmenistan", 0.486696));
-  vuln_index_.insert(std::pair<char*, float>("Namibia", 0.490478));
-  //vuln_index_.insert(std::pair<char*, float>("Vanuatu", 0.490878));
-  vuln_index_.insert(std::pair<char*, float>("Nicaragua", 0.492491));
-  vuln_index_.insert(std::pair<char*, float>("Libya", 0.493272));
+  // vuln_index_.insert(std::pair<std::string, float>("Palestine", 0.450415));
+  vuln_index_.insert(std::pair<std::string, float>("Bhutan", 0.460880));
+  vuln_index_.insert(std::pair<std::string, float>("Ghana", 0.462565));
+  vuln_index_.insert(std::pair<std::string, float>("Guatemala", 0.477179));
+  // vuln_index_.insert(std::pair<std::string, float>("Cape Verde", 0.486189));
+  vuln_index_.insert(std::pair<std::string, float>("Turkmenistan", 0.486696));
+  vuln_index_.insert(std::pair<std::string, float>("Namibia", 0.490478));
+  // vuln_index_.insert(std::pair<std::string, float>("Vanuatu", 0.490878));
+  vuln_index_.insert(std::pair<std::string, float>("Nicaragua", 0.492491));
+  vuln_index_.insert(std::pair<std::string, float>("Libya", 0.493272));
 
-  vuln_index_.insert(std::pair<char*, float>("India", 0.493799));
-  vuln_index_.insert(std::pair<char*, float>("Algeria", 0.496612));
-  vuln_index_.insert(std::pair<char*, float>("Dominican Republic", 0.499533));
-  vuln_index_.insert(std::pair<char*, float>("Jamaica", 0.499783));
-  vuln_index_.insert(std::pair<char*, float>("Bolivia", 0.500436));
-  vuln_index_.insert(std::pair<char*, float>("Tajikistan", 0.507026));
-  vuln_index_.insert(std::pair<char*, float>("Uzbekistan", 0.515492));
-  vuln_index_.insert(std::pair<char*, float>("Saint Lucia", 0.516511));
-  vuln_index_.insert(std::pair<char*, float>("Bosnia and Herzegovina", 0.523079));
-  vuln_index_.insert(std::pair<char*, float>("Egypt", 0.530405));
+  vuln_index_.insert(std::pair<std::string, float>("India", 0.493799));
+  vuln_index_.insert(std::pair<std::string, float>("Algeria", 0.496612));
+  vuln_index_.insert(std::pair<std::string, float>("Dominican Republic", 0.499533));
+  vuln_index_.insert(std::pair<std::string, float>("Jamaica", 0.499783));
+  vuln_index_.insert(std::pair<std::string, float>("Bolivia", 0.500436));
+  vuln_index_.insert(std::pair<std::string, float>("Tajikistan", 0.507026));
+  vuln_index_.insert(std::pair<std::string, float>("Uzbekistan", 0.515492));
+  vuln_index_.insert(std::pair<std::string, float>("Saint Lucia", 0.516511));
+  vuln_index_.insert(
+      std::pair<std::string, float>("Bosnia and Herzegovina", 0.523079));
+  vuln_index_.insert(std::pair<std::string, float>("Egypt", 0.530405));
 
-  vuln_index_.insert(std::pair<char*, float>("Venezuela", 0.530692));
-  vuln_index_.insert(std::pair<char*, float>("Tunisia", 0.535451));
-  vuln_index_.insert(std::pair<char*, float>("Paraguay", 0.541167));
-  //vuln_index_.insert(std::pair<char*, float>("Marshall Islands", 0.544611));
-  vuln_index_.insert(std::pair<char*, float>("Philippines", 0.544923));
-  vuln_index_.insert(std::pair<char*, float>("Lebanon", 0.546332));
-  vuln_index_.insert(std::pair<char*, float>("Botswana", 0.548363));
-  //vuln_index_.insert(std::pair<char*, float>("Saint Vincent and the Grenadines", 0.549145));
-  //vuln_index_.insert(std::pair<char*, float>("Azerbaijan", 0.550328));
-  vuln_index_.insert(std::pair<char*, float>("Belize", 0.551546));
+  vuln_index_.insert(std::pair<std::string, float>("Venezuela", 0.530692));
+  vuln_index_.insert(std::pair<std::string, float>("Tunisia", 0.535451));
+  vuln_index_.insert(std::pair<std::string, float>("Paraguay", 0.541167));
+  // vuln_index_.insert(std::pair<std::string, float>("Marshall Islands", 0.544611));
+  vuln_index_.insert(std::pair<std::string, float>("Philippines", 0.544923));
+  vuln_index_.insert(std::pair<std::string, float>("Lebanon", 0.546332));
+  vuln_index_.insert(std::pair<std::string, float>("Botswana", 0.548363));
+  // vuln_index_.insert(std::pair<std::string, float>("Saint Vincent and the Grenadines", 0.549145)); vuln_index_.insert(std::pair<std::string, float>("Azerbaijan", 0.550328));
+  vuln_index_.insert(std::pair<std::string, float>("Belize", 0.551546));
 
-  vuln_index_.insert(std::pair<char*, float>("Guyana", 0.554987));
-  vuln_index_.insert(std::pair<char*, float>("Suriname", 0.555320));
-  vuln_index_.insert(std::pair<char*, float>("Kyrgyzstan", 0.555486));
-  vuln_index_.insert(std::pair<char*, float>("Indonesia", 0.562944));
-  //vuln_index_.insert(std::pair<char*, float>("Fiji", 0.567238));
-  vuln_index_.insert(std::pair<char*, float>("Iran", 0.567841));
-  vuln_index_.insert(std::pair<char*, float>("Serbia", 0.568934));
-  vuln_index_.insert(std::pair<char*, float>("Morocco", 0.569769));
-  vuln_index_.insert(std::pair<char*, float>("Sri Lanka", 0.571001));
-  vuln_index_.insert(std::pair<char*, float>("Ecuador", 0.575843));
+  vuln_index_.insert(std::pair<std::string, float>("Guyana", 0.554987));
+  vuln_index_.insert(std::pair<std::string, float>("Suriname", 0.555320));
+  vuln_index_.insert(std::pair<std::string, float>("Kyrgyzstan", 0.555486));
+  vuln_index_.insert(std::pair<std::string, float>("Indonesia", 0.562944));
+  // vuln_index_.insert(std::pair<std::string, float>("Fiji", 0.567238));
+  vuln_index_.insert(std::pair<std::string, float>("Iran", 0.567841));
+  vuln_index_.insert(std::pair<std::string, float>("Serbia", 0.568934));
+  vuln_index_.insert(std::pair<std::string, float>("Morocco", 0.569769));
+  vuln_index_.insert(std::pair<std::string, float>("Sri Lanka", 0.571001));
+  vuln_index_.insert(std::pair<std::string, float>("Ecuador", 0.575843));
 
-  //vuln_index_.insert(std::pair<char*, float>("Maldives", 0.576299));
-  //vuln_index_.insert(std::pair<char*, float>("Samoa", 0.580679));
-  vuln_index_.insert(std::pair<char*, float>("Colombia", 0.583850));
-  //vuln_index_.insert(std::pair<char*, float>("Trinidad and Tobago", 0.594998));
-  vuln_index_.insert(std::pair<char*, float>("Grenada", 0.597669));
-  vuln_index_.insert(std::pair<char*, float>("Kosovo", 0.599085));
-  //vuln_index_.insert(std::pair<char*, float>("Dominica", 0.604170));
-  vuln_index_.insert(std::pair<char*, float>("Panama", 0.606521));
-  vuln_index_.insert(std::pair<char*, float>("Kazakhstan", 0.607098));
-  vuln_index_.insert(std::pair<char*, float>("El Salvador", 0.607731));
+  // vuln_index_.insert(std::pair<std::string, float>("Maldives", 0.576299));
+  // vuln_index_.insert(std::pair<std::string, float>("Samoa", 0.580679));
+  vuln_index_.insert(std::pair<std::string, float>("Colombia", 0.583850));
+  // vuln_index_.insert(std::pair<std::string, float>("Trinidad and Tobago", 0.594998));
+  vuln_index_.insert(std::pair<std::string, float>("Grenada", 0.597669));
+  vuln_index_.insert(std::pair<std::string, float>("Kosovo", 0.599085));
+  // vuln_index_.insert(std::pair<std::string, float>("Dominica", 0.604170));
+  vuln_index_.insert(std::pair<std::string, float>("Panama", 0.606521));
+  vuln_index_.insert(std::pair<std::string, float>("Kazakhstan", 0.607098));
+  vuln_index_.insert(std::pair<std::string, float>("El Salvador", 0.607731));
 
-  //vuln_index_.insert(std::pair<char*, float>("Tuvalu", 0.608741));
-  vuln_index_.insert(std::pair<char*, float>("Montenegro", 0.612065));
-  vuln_index_.insert(std::pair<char*, float>("Belarus", 0.616419));
-  vuln_index_.insert(std::pair<char*, float>("Ukraine", 0.617343));
-  vuln_index_.insert(std::pair<char*, float>("Andorra", 0.625221));
-  vuln_index_.insert(std::pair<char*, float>("Vietnam", 0.626124));
-  vuln_index_.insert(std::pair<char*, float>("Mongolia", 0.626185));
-  vuln_index_.insert(std::pair<char*, float>("Albania", 0.626259));
-  //vuln_index_.insert(std::pair<char*, float>("Seychelles", 0.628108));
-  //vuln_index_.insert(std::pair<char*, float>("Tonga", 0.630046));
+  // vuln_index_.insert(std::pair<std::string, float>("Tuvalu", 0.608741));
+  vuln_index_.insert(std::pair<std::string, float>("Montenegro", 0.612065));
+  vuln_index_.insert(std::pair<std::string, float>("Belarus", 0.616419));
+  vuln_index_.insert(std::pair<std::string, float>("Ukraine", 0.617343));
+  vuln_index_.insert(std::pair<std::string, float>("Andorra", 0.625221));
+  vuln_index_.insert(std::pair<std::string, float>("Vietnam", 0.626124));
+  vuln_index_.insert(std::pair<std::string, float>("Mongolia", 0.626185));
+  vuln_index_.insert(std::pair<std::string, float>("Albania", 0.626259));
+  // vuln_index_.insert(std::pair<std::string, float>("Seychelles", 0.628108));
+  // vuln_index_.insert(std::pair<std::string, float>("Tonga", 0.630046));
 
-  vuln_index_.insert(std::pair<char*, float>("Oman", 0.633743));
-  //vuln_index_.insert(std::pair<char*, float>("Mauritius", 0.635763));
-  vuln_index_.insert(std::pair<char*, float>("Moldova", 0.635987));
-  vuln_index_.insert(std::pair<char*, float>("Russia", 0.639878));
-  vuln_index_.insert(std::pair<char*, float>("Peru", 0.645670));
-  vuln_index_.insert(std::pair<char*, float>("Bahamas", 0.653653));
-  vuln_index_.insert(std::pair<char*, float>("Romania", 0.657694));
-  //vuln_index_.insert(std::pair<char*, float>("Palau", 0.658010));
-  vuln_index_.insert(std::pair<char*, float>("China", 0.663535));
-  //vuln_index_.insert(std::pair<char*, float>("Bahrain", 0.663702));
+  vuln_index_.insert(std::pair<std::string, float>("Oman", 0.633743));
+  // vuln_index_.insert(std::pair<std::string, float>("Mauritius", 0.635763));
+  vuln_index_.insert(std::pair<std::string, float>("Moldova", 0.635987));
+  vuln_index_.insert(std::pair<std::string, float>("Russia", 0.639878));
+  vuln_index_.insert(std::pair<std::string, float>("Peru", 0.645670));
+  vuln_index_.insert(std::pair<std::string, float>("Bahamas", 0.653653));
+  vuln_index_.insert(std::pair<std::string, float>("Romania", 0.657694));
+  // vuln_index_.insert(std::pair<std::string, float>("Palau", 0.658010));
+  vuln_index_.insert(std::pair<std::string, float>("China", 0.663535));
+  // vuln_index_.insert(std::pair<std::string, float>("Bahrain", 0.663702));
 
-  vuln_index_.insert(std::pair<char*, float>("Kuwait", 0.664856));
-  //vuln_index_.insert(std::pair<char*, float>("Cyprus", 0.665630));
-  vuln_index_.insert(std::pair<char*, float>("Bulgaria", 0.666120));
-  vuln_index_.insert(std::pair<char*, float>("Turkey", 0.677438));
-  //vuln_index_.insert(std::pair<char*, float>("Barbados", 0.681515));
-  vuln_index_.insert(std::pair<char*, float>("Macedonia", 0.685990));
-  //vuln_index_.insert(std::pair<char*, float>("San Marino", 0.687314));
-  //vuln_index_.insert(std::pair<char*, float>("Saint Kitts and Nevis", 0.691572));
-  //vuln_index_.insert(std::pair<char*, float>("Antigua and Barbuda", 0.693938));
-  vuln_index_.insert(std::pair<char*, float>("Cuba", 0.695910));
+  vuln_index_.insert(std::pair<std::string, float>("Kuwait", 0.664856));
+  // vuln_index_.insert(std::pair<std::string, float>("Cyprus", 0.665630));
+  vuln_index_.insert(std::pair<std::string, float>("Bulgaria", 0.666120));
+  vuln_index_.insert(std::pair<std::string, float>("Turkey", 0.677438));
+  // vuln_index_.insert(std::pair<std::string, float>("Barbados", 0.681515));
+  vuln_index_.insert(std::pair<std::string, float>("Macedonia", 0.685990));
+  // vuln_index_.insert(std::pair<std::string, float>("San Marino", 0.687314));
+  // vuln_index_.insert(std::pair<std::string, float>("Saint Kitts and Nevis", 0.691572)); vuln_index_.insert(std::pair<std::string, float>("Antigua and Barbuda", 0.693938));
+  vuln_index_.insert(std::pair<std::string, float>("Cuba", 0.695910));
 
-  vuln_index_.insert(std::pair<char*, float>("South Africa", 0.697292));
-  //vuln_index_.insert(std::pair<char*, float>("Malta", 0.706869));
-  vuln_index_.insert(std::pair<char*, float>("Armenia", 0.706912));
-  vuln_index_.insert(std::pair<char*, float>("Argentina", 0.707041));
-  vuln_index_.insert(std::pair<char*, float>("Jordan", 0.707361));
-  //vuln_index_.insert(std::pair<char*, float>("Taiwan", 0.709691));
-  vuln_index_.insert(std::pair<char*, float>("Thailand", 0.711334));
-  vuln_index_.insert(std::pair<char*, float>("Brazil", 0.716641));
-  vuln_index_.insert(std::pair<char*, float>("Croatia", 0.719996));
-  vuln_index_.insert(std::pair<char*, float>("Greece", 0.734145));
+  vuln_index_.insert(std::pair<std::string, float>("South Africa", 0.697292));
+  // vuln_index_.insert(std::pair<std::string, float>("Malta", 0.706869));
+  vuln_index_.insert(std::pair<std::string, float>("Armenia", 0.706912));
+  vuln_index_.insert(std::pair<std::string, float>("Argentina", 0.707041));
+  vuln_index_.insert(std::pair<std::string, float>("Jordan", 0.707361));
+  // vuln_index_.insert(std::pair<std::string, float>("Taiwan", 0.709691));
+  vuln_index_.insert(std::pair<std::string, float>("Thailand", 0.711334));
+  vuln_index_.insert(std::pair<std::string, float>("Brazil", 0.716641));
+  vuln_index_.insert(std::pair<std::string, float>("Croatia", 0.719996));
+  vuln_index_.insert(std::pair<std::string, float>("Greece", 0.734145));
 
-  vuln_index_.insert(std::pair<char*, float>("Mexico", 0.734971));
-  vuln_index_.insert(std::pair<char*, float>("Georgia", 0.735821));
-  vuln_index_.insert(std::pair<char*, float>("Saudi Arabia", 0.736844));
-  vuln_index_.insert(std::pair<char*, float>("Costa Rica", 0.736960));
-  //vuln_index_.insert(std::pair<char*, float>("Liechtenstein", 0.737219));
-  vuln_index_.insert(std::pair<char*, float>("Uruguay", 0.745957));
-  vuln_index_.insert(std::pair<char*, float>("Monaco", 0.753737));
-  vuln_index_.insert(std::pair<char*, float>("Malaysia", 0.761135));
-  vuln_index_.insert(std::pair<char*, float>("Brunei", 0.762886));
-  vuln_index_.insert(std::pair<char*, float>("Latvia", 0.763937));
+  vuln_index_.insert(std::pair<std::string, float>("Mexico", 0.734971));
+  vuln_index_.insert(std::pair<std::string, float>("Georgia", 0.735821));
+  vuln_index_.insert(std::pair<std::string, float>("Saudi Arabia", 0.736844));
+  vuln_index_.insert(std::pair<std::string, float>("Costa Rica", 0.736960));
+  // vuln_index_.insert(std::pair<std::string, float>("Liechtenstein", 0.737219));
+  vuln_index_.insert(std::pair<std::string, float>("Uruguay", 0.745957));
+  vuln_index_.insert(std::pair<std::string, float>("Monaco", 0.753737));
+  vuln_index_.insert(std::pair<std::string, float>("Malaysia", 0.761135));
+  vuln_index_.insert(std::pair<std::string, float>("Brunei", 0.762886));
+  vuln_index_.insert(std::pair<std::string, float>("Latvia", 0.763937));
 
-  vuln_index_.insert(std::pair<char*, float>("United Arab Emirates", 0.765200));
-  vuln_index_.insert(std::pair<char*, float>("Lithuania", 0.771597));
-  vuln_index_.insert(std::pair<char*, float>("Israel", 0.782439));
-  vuln_index_.insert(std::pair<char*, float>("Poland", 0.782799));
-  vuln_index_.insert(std::pair<char*, float>("Qatar", 0.787534));
-  vuln_index_.insert(std::pair<char*, float>("Hungary", 0.795623));
-  vuln_index_.insert(std::pair<char*, float>("Estonia", 0.797443));
-  vuln_index_.insert(std::pair<char*, float>("Chile", 0.801129));
-  vuln_index_.insert(std::pair<char*, float>("Slovenia", 0.805790));
-  vuln_index_.insert(std::pair<char*, float>("Slovakia", 0.808457));
+  vuln_index_.insert(std::pair<std::string, float>("United Arab Emirates", 0.765200));
+  vuln_index_.insert(std::pair<std::string, float>("Lithuania", 0.771597));
+  vuln_index_.insert(std::pair<std::string, float>("Israel", 0.782439));
+  vuln_index_.insert(std::pair<std::string, float>("Poland", 0.782799));
+  vuln_index_.insert(std::pair<std::string, float>("Qatar", 0.787534));
+  vuln_index_.insert(std::pair<std::string, float>("Hungary", 0.795623));
+  vuln_index_.insert(std::pair<std::string, float>("Estonia", 0.797443));
+  vuln_index_.insert(std::pair<std::string, float>("Chile", 0.801129));
+  vuln_index_.insert(std::pair<std::string, float>("Slovenia", 0.805790));
+  vuln_index_.insert(std::pair<std::string, float>("Slovakia", 0.808457));
 
-  vuln_index_.insert(std::pair<char*, float>("Italy", 0.821690));
-  vuln_index_.insert(std::pair<char*, float>("Czech Republic", 0.847175));
-  vuln_index_.insert(std::pair<char*, float>("France", 0.855407));
-  vuln_index_.insert(std::pair<char*, float>("Belgium", 0.870933));
-  vuln_index_.insert(std::pair<char*, float>("Austria", 0.874243));
-  vuln_index_.insert(std::pair<char*, float>("Spain", 0.875475));
-  //vuln_index_.insert(std::pair<char*, float>("Luxembourg", 0.875694));
-  vuln_index_.insert(std::pair<char*, float>("Singapore", 0.878289));
-  vuln_index_.insert(std::pair<char*, float>("South Korea", 0.879402));
-  vuln_index_.insert(std::pair<char*, float>("Portugal", 0.888782));
+  vuln_index_.insert(std::pair<std::string, float>("Italy", 0.821690));
+  vuln_index_.insert(std::pair<std::string, float>("Czech Republic", 0.847175));
+  vuln_index_.insert(std::pair<std::string, float>("France", 0.855407));
+  vuln_index_.insert(std::pair<std::string, float>("Belgium", 0.870933));
+  vuln_index_.insert(std::pair<std::string, float>("Austria", 0.874243));
+  vuln_index_.insert(std::pair<std::string, float>("Spain", 0.875475));
+  // vuln_index_.insert(std::pair<std::string, float>("Luxembourg", 0.875694));
+  vuln_index_.insert(std::pair<std::string, float>("Singapore", 0.878289));
+  vuln_index_.insert(std::pair<std::string, float>("South Korea", 0.879402));
+  vuln_index_.insert(std::pair<std::string, float>("Portugal", 0.888782));
 
-  vuln_index_.insert(std::pair<char*, float>("United Kingdom", 0.897495));
-  vuln_index_.insert(std::pair<char*, float>("Ireland", 0.906320));
-  vuln_index_.insert(std::pair<char*, float>("Iceland", 0.908112));
-  vuln_index_.insert(std::pair<char*, float>("Australia", 0.912517));
-  vuln_index_.insert(std::pair<char*, float>("Switzerland", 0.915839));
-  vuln_index_.insert(std::pair<char*, float>("New Zealand", 0.916279));
-  vuln_index_.insert(std::pair<char*, float>("Netherlands", 0.918935));
-  vuln_index_.insert(std::pair<char*, float>("United States", 0.924939));
-  vuln_index_.insert(std::pair<char*, float>("Japan", 0.926410));
-  vuln_index_.insert(std::pair<char*, float>("Denmark", 0.953641));
+  vuln_index_.insert(std::pair<std::string, float>("United Kingdom", 0.897495));
+  vuln_index_.insert(std::pair<std::string, float>("Ireland", 0.906320));
+  vuln_index_.insert(std::pair<std::string, float>("Iceland", 0.908112));
+  vuln_index_.insert(std::pair<std::string, float>("Australia", 0.912517));
+  vuln_index_.insert(std::pair<std::string, float>("Switzerland", 0.915839));
+  vuln_index_.insert(std::pair<std::string, float>("New Zealand", 0.916279));
+  vuln_index_.insert(std::pair<std::string, float>("Netherlands", 0.918935));
+  vuln_index_.insert(std::pair<std::string, float>("United States", 0.924939));
+  vuln_index_.insert(std::pair<std::string, float>("Japan", 0.926410));
+  vuln_index_.insert(std::pair<std::string, float>("Denmark", 0.953641));
 
-  vuln_index_.insert(std::pair<char*, float>("Sweden", 0.955625));
-  vuln_index_.insert(std::pair<char*, float>("Germany", 0.966890));
-  vuln_index_.insert(std::pair<char*, float>("Finland", 0.968274));
-  vuln_index_.insert(std::pair<char*, float>("Canada", 0.973400));
-  vuln_index_.insert(std::pair<char*, float>("Norway", 1.0));
+  vuln_index_.insert(std::pair<std::string, float>("Sweden", 0.955625));
+  vuln_index_.insert(std::pair<std::string, float>("Germany", 0.966890));
+  vuln_index_.insert(std::pair<std::string, float>("Finland", 0.968274));
+  vuln_index_.insert(std::pair<std::string, float>("Canada", 0.973400));
+  vuln_index_.insert(std::pair<std::string, float>("Norway", 1.0));
 
-  //Adjust these from [0,1] to [.25, .75]
+  // Adjust these from [0,1] to [.25, .75]
   for (auto pair : vuln_index_) {
-    adjusted_vuln_index_.insert(std::pair<char*, float>(pair.first, (pair.second / 2) + .25));
+    adjusted_vuln_index_.insert(
+        std::pair<std::string, float>(pair.first, (pair.second / 2) + .25));
   }
-
-  //TODO: Do all of these with a for loop and then add in the single countries with a for loop as well (vector contains)
-  //TODO: Do this by putting all the country vectors in a vector
-  //Calculate averages and add them to the vuln by region map
-  //vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", ComputeAvgScore(uk)));
-  //vuln_by_region_.insert(std::pair<char*, float>("Northern South America", ComputeAvgScore(northern_south_america)));
-  //vuln_by_region_.insert(std::pair<char*, float>("Western South America", ComputeAvgScore(western_south_america)));
-  //vuln_by_region_.insert(std::pair<char*, float>("Southern South America", ComputeAvgScore(southern_south_america)));
-  //vuln_by_region_.insert(std::pair<char*, float>("Caribbean", ComputeAvgScore(caribbean)));
-  //vuln_by_region_.insert(std::pair<char*, float>("Central America", ComputeAvgScore(central_america)));
-  //vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  //vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
-  vuln_by_region_.insert(std::pair<char*, float>("United Kingdom", 0.0));
 }
 
-float Data::ComputeAvgScore(const std::vector<char*>& region) {
+void Data::PopulateRegionVuln() {
+  //Calculate averages and add them to the vuln by region map
+  for (const auto& pair : adjusted_vuln_index_) {
+    //If the country is its own region
+    if (CategorizeLoc(pair.first) == pair.first) {
+      vuln_by_region_.insert(std::pair<std::string, float>(pair.first, pair.second));
+    } else {
+      bool found = false;
+      for (const auto& other_pairs : vuln_by_region_) {
+        // If the region has been calculated, break
+        // Otherwise calculate and add the region
+        if (other_pairs.first == CategorizeLoc(pair.first)) {
+          found = true;
+        }
+      }
+      // TODO: Office hours to find out why this is an invalid key
+      if (!found) {
+        float average =
+            ComputeAvgScore(name_to_vec_.at(CategorizeLoc(pair.first)));
+        vuln_by_region_.insert(
+            std::pair<std::string, float>(CategorizeLoc(pair.first), average));
+
+      }
+    }
+  }
+  std::cout << "blank" << std::endl;
+}
+
+float Data::ComputeAvgScore(const std::vector<std::string>& region) {
   float sum = 0;
 
-  for (auto& country : region) {
-    sum += vuln_index_.at(country);
+  for (auto country : region) {
+    sum += adjusted_vuln_index_.at(country);
   }
 
-  return sum / region.size();
+  return (sum / region.size());
 }
 
 std::string Data::CategorizeLoc(std::string country) {
@@ -496,15 +523,15 @@ std::string Data::CategorizeLoc(std::string country) {
   } else if (std::count(scandinavia.begin(), scandinavia.end(), country) != 0) {
     to_return = "Scandinavia";
   } else if (std::count(russia.begin(), russia.end(), country) != 0) {
-    to_return = "Russia";
+    to_return = "Russia Area";
   } else if (std::count(germany.begin(), germany.end(), country) != 0) {
-    to_return = "Germany";
+    to_return = "Germany Area";
   } else if (std::count(france.begin(), france.end(), country) != 0) {
-    to_return = "France";
+    to_return = "France Area";
   } else if (std::count(spain.begin(), spain.end(), country) != 0) {
-    to_return = "Spain";
+    to_return = "Spain Area";
   } else if (std::count(ukraine.begin(), ukraine.end(), country) != 0) {
-    to_return = "Ukraine";
+    to_return = "Ukraine Area";
   } else if (std::count(central_europe.begin(), central_europe.end(), country) != 0) {
     to_return = "Central Europe";
   } else if (std::count(eastern_europe.begin(), eastern_europe.end(), country) != 0) {
@@ -520,19 +547,19 @@ std::string Data::CategorizeLoc(std::string country) {
   } else if (std::count(middle_east.begin(), middle_east.end(), country) != 0) {
     to_return = "Middle East";
   } else if (std::count(india.begin(), india.end(), country) != 0) {
-    to_return = "India";
+    to_return = "India Area";
   } else if (std::count(pakistan.begin(), pakistan.end(), country) != 0) {
-    to_return = "Pakistan";
+    to_return = "Pakistan Area";
   } else if (std::count(stans.begin(), stans.end(), country) != 0) {
     to_return = "Stans";
   } else if (std::count(southeast_asia.begin(), southeast_asia.end(), country) != 0) {
     to_return = "Southeast Asia";
   } else if (std::count(indonesia.begin(), indonesia.end(), country) != 0) {
-    to_return = "Indonesia";
+    to_return = "Indonesia Area";
   } else if (std::count(australia.begin(), australia.end(), country) != 0) {
-    to_return = "Australia";
+    to_return = "Australia Area";
   } else if (std::count(china.begin(), china.end(), country) != 0) {
-    to_return = "China";
+    to_return = "China Area";
   } else if (std::count(central_america.begin(), central_america.end(), country) != 0) {
     to_return = "Central America";
   } else if (std::count(caribbean.begin(), caribbean.end(), country) != 0) {
@@ -545,6 +572,5 @@ std::string Data::CategorizeLoc(std::string country) {
 
   return to_return;
 }
-
 
 }
