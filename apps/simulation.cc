@@ -11,18 +11,14 @@
 
 namespace simulation {
 
-using cinder::app::KeyEvent;
-
 Simulation::Simulation() {
   //Set the speed slider to start at 1x
   speed_slider_ = 1;
   //Set the initial r_0 to 5.7 (Covid-19)
   r_0_ = 5.7;
-  //Set initial value for medical precations to 5
-  med_efforts_ = 5;
   //The simulation should start paused
   is_paused_ = true;
-
+  //The starting country, controlled by the ListBox of countries
   starting_country_ = 0;
 }
 
@@ -62,14 +58,15 @@ void Simulation::draw() {
 
   //Populate the map with airports
   for (auto port : d.airports) {
-    ci::Rectf rect(port.at(0), port.at(1), port.at(2), port.at(3));
+    //Port is an array of 2 ints with the airport coords
+    //Airports should be 10x10
+    ci::Rectf rect(port.at(0), port.at(1), port.at(0) + 10, port.at(1) + 10);
     ci::gl::draw(airport_, rect);
   }
 
   //Create sliders for the UI
   ImGui::SliderFloat("Speed Multiplier", &speed_slider_, .25, 2);
   ImGui::SliderFloat("R0 (contagiousness of disease)", &r_0_, .5, 10);
-  ImGui::SliderInt("Medical research and precaution", &med_efforts_, 1, 10);
 
   //Create pause/resume button
   if (ImGui::Button("Start/Pause")) {
@@ -94,6 +91,7 @@ void Simulation::draw() {
   //Get the region index and display it with a label
   std::string region_index = "Regional Index (Adjusted): " + std::to_string(d.vuln_by_region_.at(d.CategorizeLoc(countries_[starting_country_])));
   ImGui::Text(region_index.data());
+
   //Create start button
   if (ImGui::Button("Initialize/Restart simulation with selected location")) {
     //engine::Begin(country);
@@ -103,7 +101,5 @@ void Simulation::draw() {
 void Simulation::StartPause() {
   is_paused_ = !is_paused_;
 }
-
-void Simulation::keyDown(KeyEvent event) { }
 
 }  // namespace simulation

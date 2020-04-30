@@ -21,7 +21,6 @@ class Simulation : public cinder::app::App {
   void setup() override;
   void update() override;
   void draw() override;
-  void keyDown(cinder::app::KeyEvent) override;
   //Pauses the simulation, handler for the start/pause button
   void StartPause();
 
@@ -34,8 +33,6 @@ class Simulation : public cinder::app::App {
   float r_0_;
   //Slider to accelerate or slow down simulation speed
   float speed_slider_;
-  //Medical efforts score
-  int med_efforts_;
   //Bool representing if the game is paused
   bool is_paused_;
   //Instance of the Data class with all the airport/index data

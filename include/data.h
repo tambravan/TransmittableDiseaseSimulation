@@ -19,11 +19,11 @@ class Data {
   //Same as above, but adjusted to .25-.75 instead of 0-1
   std::map<std::string, float> adjusted_vuln_index_;
   //List of all the airports by coordinates (adjusted from image)
-  std::vector<std::array<int, 4>> airports;
+  std::vector<std::array<int, 2>> airports;
   //Map of average vulnerability indices after categorization
   std::map<std::string, float> vuln_by_region_;
   //Map of region names as string to their vector
-  std::map<std::string, std::vector<std::string>> name_to_vec_;
+  std::map<std::string, std::vector<std::string>> reg_name_to_vec_;
 
   //Constructor calls populate methods
   Data();
@@ -56,22 +56,22 @@ class Data {
   std::vector<std::string> caribbean;
   std::vector<std::string> uk;
 
-  std::string CategorizeLoc(std::string country);
+  std::string CategorizeLoc(const std::string& country);
 
  private:
   //Populates vuln_index_ and adjusted_vuln_index_
   void PopulateVuln();
-  //Populates vuln by region
+  //Populates vuln by region by using ComputeAvgScore
   void PopulateRegionVuln();
-  //Populates airports_
+  //Populates airports_ into airports_
   void PopulateAirports();
-  //Populates regions vectors
+  //Populates regions vectors and store them in name_to_vec
   void PopulateRegions();
   //Computes average vuln score of a region
   float ComputeAvgScore(const std::vector<std::string>& region);
-};
+}; //Class data
 
-}
+} //Namespace data
 
 
 #endif  // FINALPROJECT_DATA_H
