@@ -47,5 +47,5 @@
   - Add functionality to dynamically change the displayed name and index in ImGui
   - Refactor CategorizeLoc() to use created vectors
   
-- **04/30/2020** Refactor c style strings to std::strings to fix some map key errors
-  - Also finalize data collection and display with ImGui
+- **04/30/2020** Refactor char* to std::strings to fix some map key errors
+  - Also finalize data collection and display with ImGui for Regional Averages
