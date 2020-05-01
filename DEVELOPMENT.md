@@ -49,3 +49,5 @@
   
 - **04/30/2020** Refactor char* to std::strings to fix some map key errors
   - Also finalize data collection and display with ImGui for Regional Averages
+  - Refactor data struct for more efficient storage
+  - Implement tests for Data class
