@@ -271,7 +271,7 @@ void Data::PopulateAirports() {
   //This was obtained from latlng of all the airports, and converting them to a 2d map
 
   //Open file
-  std::ifstream airport_loc("src/airports.txt");
+  std::ifstream airport_loc("resources/airports.txt");
 
   //Verify file was opened
   if (!airport_loc) {
@@ -290,8 +290,8 @@ void Data::PopulateAirports() {
 //Populate vuln_index and adjusted_vuln_index
 void Data::PopulateVuln() {
   //Load the countries and indices files
-  std::ifstream countries("src/countries.txt");
-  std::ifstream indices("src/indices.txt");
+  std::ifstream countries("resources/countries.txt");
+  std::ifstream indices("resources/indices.txt");
 
   //If they fail, exit the program and print an error message
   if (!countries || !indices) {

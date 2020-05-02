@@ -9,10 +9,13 @@
 namespace engine {
 
 void engine::Engine::Begin(std::string startloc) {
+  //Set the start location again
+  start_loc = d.CategorizeLoc(startloc);
 
-  std::string start(startloc);
-
-  start_loc = d.CategorizeLoc(start);
+  //Reset infected counts
+  for (auto& pair : regions_) {
+    pair.second.infected = 0;
+  }
 }
 
 void engine::Engine::PopulateRegions() {
@@ -75,6 +78,15 @@ void Engine::SetRegionDetails(const std::string& region, int x, int y, int size)
   regions_.at(region).display_x = x;
   regions_.at(region).display_y = y;
   regions_.at(region).display_size = size;
+}
+
+void Engine::UpdateInfections() {
+  for (auto& pair : regions_) {
+    pair.second.infected+= .01*(1-pair.second.reg_index)*speed;
+    if (pair.second.infected >= 1) {
+      pair.second.infected = 1;
+    }
+  }
 }
 
 Region::Region() = default;

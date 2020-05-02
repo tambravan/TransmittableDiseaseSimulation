@@ -42,21 +42,25 @@ class Engine {
   float r0;
   float speed;
 
-  //Sets the factors that are changed from the UI
-  void SetSliders(float set_r0, float set_speed);
-
-  //Method that is called when the game starts. This sets the starting location
-  //And resets other factors
-  void Begin(std::string start_loc);
-
   //Sets region details given inputs
   void SetRegionDetails(const std::string& region, int x, int y, int size);
 
  public:
+  //Method that is called when the game starts. This sets the starting location
+  //And resets other factors
+  void Begin(std::string start_loc);
+
   //Map of strings to regions for each region
   std::map<std::string, engine::Region> regions_;
+
   //Populates the regions_ map
   void PopulateRegions();
+
+  //Sets the factors that are changed from the UI
+  void SetSliders(float set_r0, float set_speed);
+
+  //Updates the infected numbers
+  void UpdateInfections();
 };
 }
 #endif  // FINALPROJECT_ENGINE_H

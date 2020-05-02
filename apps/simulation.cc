@@ -33,10 +33,10 @@ void Simulation::setup() {
 
   //Load the worldmap_ from the filepath it is stored at
   //Relative paths did not work here, neither did loadAsset
-  worldmap_ = ci::gl::Texture::create(ci::loadImage("assets/worldmap.png"));
+  worldmap_ = ci::gl::Texture::create(ci::loadImage("resources/worldmap.png"));
 
   //Load the airport map
-  airport_ = ci::gl::Texture::create(ci::loadImage("assets/airport.png"));
+  airport_ = ci::gl::Texture::create(ci::loadImage("resources/airport.png"));
 
   //Set up the engine
   e.PopulateRegions();
@@ -45,7 +45,8 @@ void Simulation::setup() {
 void Simulation::update() {
   //Simulation should only run if it is not paused
   if (!is_paused_) {
-    //Run the simulation
+    e.SetSliders(r_0_, speed_slider_);
+    e.UpdateInfections();
   }
 }
 
@@ -98,7 +99,7 @@ void Simulation::draw() {
 
   //Create start button
   if (ImGui::Button("Initialize/Restart simulation with selected location")) {
-    //engine::Begin(country);
+    e.Begin(country);
   }
 
   ci::gl::color(ci::Color(1, 0, 0));

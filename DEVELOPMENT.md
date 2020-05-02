@@ -60,3 +60,7 @@
   
 - **05/02/2020** Refactor data to work from txt files
   - Convert adding data directly to loading from a file
+  - Implement engine::Begin(), which resets all numbers and sets the starting location
+  - Start creating engine::UpdateInfections()
+    - Updates infection numbers and graphically models them
+    - This is where consideration of all data, factors, etc. come into play
