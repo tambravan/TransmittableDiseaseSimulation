@@ -52,8 +52,8 @@
   - Refactor data struct for more efficient storage
   - Implement tests for Data class
   
-- **05/01/2020** Begin implementation of the Engine class
+- **05/01/2020** Begin implementation of the Engine
   - Create Region struct and populate the struct
   - Decide on graphical display format
-  - Add support for all regions
-  - Implement struct of regions and basic display for all regions with circles
+  - Add support for all countries
+  - Implement struct regions and basic display for all regions with circles
