@@ -57,3 +57,6 @@
   - Decide on graphical display format
   - Add support for all countries
   - Implement struct regions and basic display for all regions with circles
+  
+- **05/02/2020** Refactor data to work from txt files
+  - Convert adding data directly to loading from a file

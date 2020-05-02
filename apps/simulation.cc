@@ -33,10 +33,10 @@ void Simulation::setup() {
 
   //Load the worldmap_ from the filepath it is stored at
   //Relative paths did not work here, neither did loadAsset
-  worldmap_ = ci::gl::Texture::create(ci::loadImage("C:/Users/tejas/Downloads/InternetDownloads/cinder_0.9.2_vc2015/cinder_0.9.2_vc2015/MyProjects/TransmittableDiseaseSimulation/assets/worldmap.png"));
+  worldmap_ = ci::gl::Texture::create(ci::loadImage("assets/worldmap.png"));
 
   //Load the airport map
-  airport_ = ci::gl::Texture::create(ci::loadImage("C:/Users/tejas/Downloads/InternetDownloads/cinder_0.9.2_vc2015/cinder_0.9.2_vc2015/MyProjects/TransmittableDiseaseSimulation/assets/airport.png"));
+  airport_ = ci::gl::Texture::create(ci::loadImage("assets/airport.png"));
 
   //Set up the engine
   e.PopulateRegions();
