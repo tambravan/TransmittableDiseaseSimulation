@@ -51,3 +51,9 @@
   - Also finalize data collection and display with ImGui for Regional Averages
   - Refactor data struct for more efficient storage
   - Implement tests for Data class
+  
+- **05/01/2020** Begin implementation of the Engine class
+  - Create Region struct and populate the struct
+  - Decide on graphical display format
+  - Add support for all regions
+  - Implement struct of regions and basic display for all regions with circles

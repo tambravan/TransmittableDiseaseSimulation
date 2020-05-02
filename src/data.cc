@@ -42,7 +42,6 @@ void Data::PopulateRegions() {
 
   germany.emplace_back("Germany");
   germany.emplace_back("Poland");
-  germany.emplace_back("Belarus");
 
   france.emplace_back("France");
   france.emplace_back("Switzerland");
@@ -50,12 +49,14 @@ void Data::PopulateRegions() {
   france.emplace_back("Andorra");
   france.emplace_back("Netherlands");
   france.emplace_back("Belgium");
+  france.emplace_back("Liechtenstein");
+  france.emplace_back("Luxembourg");
 
   spain.emplace_back("Spain");
   spain.emplace_back("Portugal");
 
   ukraine.emplace_back("Ukraine");
-  ukraine.emplace_back("Romania");
+  ukraine.emplace_back("Belarus");
 
   central_europe.emplace_back("Austria");
   central_europe.emplace_back("Hungary");
@@ -73,6 +74,9 @@ void Data::PopulateRegions() {
   eastern_europe.emplace_back("Slovenia");
   eastern_europe.emplace_back("Kosovo");
   eastern_europe.emplace_back("Serbia");
+  eastern_europe.emplace_back("Romania");
+  eastern_europe.emplace_back("Cyprus");
+  eastern_europe.emplace_back("Montenegro");
 
   central_africa.emplace_back("Somalia");
   central_africa.emplace_back("Ethiopia");
@@ -84,6 +88,8 @@ void Data::PopulateRegions() {
   central_africa.emplace_back("Uganda");
   central_africa.emplace_back("Rwanda");
   central_africa.emplace_back("Republic of the Congo");
+  central_africa.emplace_back("Sao Tome and Principe");
+  central_africa.emplace_back("Burundi");
 
   southern_africa.emplace_back("Swaziland");
   southern_africa.emplace_back("Lesotho");
@@ -97,6 +103,9 @@ void Data::PopulateRegions() {
   southern_africa.emplace_back("Zambia");
   southern_africa.emplace_back("Tanzania");
   southern_africa.emplace_back("Madagascar");
+  southern_africa.emplace_back("Comoros");
+  southern_africa.emplace_back("Mauritius");
+  southern_africa.emplace_back("Seychelles");
 
   western_africa.emplace_back("Nigeria");
   western_africa.emplace_back("Niger");
@@ -116,6 +125,8 @@ void Data::PopulateRegions() {
   western_africa.emplace_back("Mauritania");
   western_africa.emplace_back("The Gambia");
   western_africa.emplace_back("Senegal");
+  western_africa.emplace_back("Burkina Faso");
+  western_africa.emplace_back("Cape Verde");
 
   north_africa.emplace_back("Egypt");
   north_africa.emplace_back("South Sudan");
@@ -136,12 +147,18 @@ void Data::PopulateRegions() {
   middle_east.emplace_back("Syria");
   middle_east.emplace_back("Jordan");
   middle_east.emplace_back("Qatar");
+  middle_east.emplace_back("Georgia");
+  middle_east.emplace_back("Armenia");
+  middle_east.emplace_back("Bahrain");
+  middle_east.emplace_back("Palestine");
+  middle_east.emplace_back("Azerbaijan");
 
   india.emplace_back("India");
   india.emplace_back("Nepal");
   india.emplace_back("Bangladesh");
   india.emplace_back("Bhutan");
   india.emplace_back("Sri Lanka");
+  india.emplace_back("Maldives");
 
   pakistan.emplace_back("Pakistan");
   pakistan.emplace_back("Afghanistan");
@@ -150,6 +167,7 @@ void Data::PopulateRegions() {
   stans.emplace_back("Tajikistan");
   stans.emplace_back("Uzbekistan");
   stans.emplace_back("Kyrgyzstan");
+  stans.emplace_back("Kazakhstan");
 
   southeast_asia.emplace_back("Singapore");
   southeast_asia.emplace_back("Cambodia");
@@ -159,17 +177,32 @@ void Data::PopulateRegions() {
   southeast_asia.emplace_back("Laos");
   southeast_asia.emplace_back("Philippines");
   southeast_asia.emplace_back("Malaysia");
+  southeast_asia.emplace_back("Vietnam");
 
   indonesia.emplace_back("Indonesia");
   indonesia.emplace_back("Papua New Guinea");
   indonesia.emplace_back("Brunei");
+  indonesia.emplace_back("Timor-Leste");
 
   australia.emplace_back("Australia");
   australia.emplace_back("New Zealand");
+  australia.emplace_back("Solomon Islands");
+  australia.emplace_back("Kiribati");
+  australia.emplace_back("Micronesia");
+  australia.emplace_back("Vanuatu");
+  australia.emplace_back("Marshall Islands");
+  australia.emplace_back("Fiji");
+  australia.emplace_back("Samoa");
+  australia.emplace_back("Tuvalu");
+  australia.emplace_back("Tonga");
+  australia.emplace_back("Palau");
+  australia.emplace_back("Vanuatu");
 
   china.emplace_back("China");
   china.emplace_back("North Korea");
   china.emplace_back("South Korea");
+  china.emplace_back("Mongolia");
+  china.emplace_back("Taiwan");
 
   central_america.emplace_back("Belize");
   central_america.emplace_back("Guatemala");
@@ -184,10 +217,22 @@ void Data::PopulateRegions() {
   caribbean.emplace_back("Bahamas");
   caribbean.emplace_back("Dominican Republic");
   caribbean.emplace_back("Haiti");
+  caribbean.emplace_back("Saint Vincent and the Grenadines");
+  caribbean.emplace_back("Trinidad and Tobago");
+  caribbean.emplace_back("Grenada");
+  caribbean.emplace_back("Dominica");
+  caribbean.emplace_back("Barbados");
+  caribbean.emplace_back("Saint Kitts and Nevis");
+  caribbean.emplace_back("Antigua and Barbuda");
+  caribbean.emplace_back("Saint Lucia");
 
   uk.emplace_back("United Kingdom");
   uk.emplace_back("Ireland");
   uk.emplace_back("Iceland");
+
+  italy.emplace_back("Italy");
+  italy.emplace_back("San Marino");
+  italy.emplace_back("Malta");
 
   reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Northern South America", northern_south_america));
   reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Southern South America", southern_south_america));
@@ -217,6 +262,7 @@ void Data::PopulateRegions() {
   reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Central America", central_america));
   reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Caribbean", caribbean));
   reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("UK", uk));
+  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Italy Area", italy));
 }
 //Populate airports_
 void Data::PopulateAirports() {
@@ -274,11 +320,11 @@ void Data::PopulateVuln() {
   vuln_index_.insert(std::pair<std::string, float>("The Gambia", 0.207809));
   vuln_index_.insert(std::pair<std::string, float>("Liberia", 0.213114));
   vuln_index_.insert(std::pair<std::string, float>("Guinea", 0.213225));
-  // vuln_index_.insert(std::pair<std::string, float>("Sao Tome and Principe", 0.223256));
+  vuln_index_.insert(std::pair<std::string, float>("Sao Tome and Principe", 0.223256));
   vuln_index_.insert(std::pair<std::string, float>("Sierra Leone", 0.223397));
   vuln_index_.insert(std::pair<std::string, float>("Burkina Faso", 0.231504));
 
-  // vuln_index_.insert(std::pair<std::string, float>("Comoros", 0.238068));
+  vuln_index_.insert(std::pair<std::string, float>("Comoros", 0.238068));
   vuln_index_.insert(std::pair<std::string, float>("Yemen", 0.250277));
   vuln_index_.insert(std::pair<std::string, float>("Eritrea", 0.252978));
   vuln_index_.insert(std::pair<std::string, float>("Togo", 0.259396));
@@ -292,24 +338,24 @@ void Data::PopulateVuln() {
 
   vuln_index_.insert(std::pair<std::string, float>("Djibouti", 0.297892));
   vuln_index_.insert(std::pair<std::string, float>("Pakistan", 0.308544));
-  // vuln_index_.insert(std::pair<std::string, float>("Timor-Leste", 0.310208));
+  vuln_index_.insert(std::pair<std::string, float>("Timor-Leste", 0.310208));
   vuln_index_.insert(std::pair<std::string, float>("Senegal", 0.329156));
   vuln_index_.insert(std::pair<std::string, float>("Zimbabwe", 0.337478));
   vuln_index_.insert(std::pair<std::string, float>("Papua New Guinea", 0.339184));
   vuln_index_.insert(std::pair<std::string, float>("Tanzania", 0.340445));
   vuln_index_.insert(std::pair<std::string, float>("Lesotho", 0.344860));
-  // vuln_index_.insert(std::pair<std::string, float>("Burundi", 0.354104));
+  vuln_index_.insert(std::pair<std::string, float>("Burundi", 0.354104));
   vuln_index_.insert(std::pair<std::string, float>("Laos", 0.355111));
 
   vuln_index_.insert(std::pair<std::string, float>("Cambodia", 0.355133));
   vuln_index_.insert(std::pair<std::string, float>("Rwanda", 0.355300));
   vuln_index_.insert(std::pair<std::string, float>("Swaziland", 0.358470));
   vuln_index_.insert(std::pair<std::string, float>("Uganda", 0.365850));
-  // vuln_index_.insert(std::pair<std::string, float>("Solomon Islands", 0.370311));
+  vuln_index_.insert(std::pair<std::string, float>("Solomon Islands", 0.370311));
   vuln_index_.insert(std::pair<std::string, float>("North Korea", 0.374870));
   vuln_index_.insert(std::pair<std::string, float>("Ethiopia", 0.382021));
   vuln_index_.insert(std::pair<std::string, float>("Kenya", 0.385436));
-  // vuln_index_.insert(std::pair<std::string, float>("Kiribati", 0.388403));
+  vuln_index_.insert(std::pair<std::string, float>("Kiribati", 0.388403));
   vuln_index_.insert(std::pair<std::string, float>("Cameroon", 0.388770));
 
   vuln_index_.insert(std::pair<std::string, float>("Syria", 0.391337));
@@ -318,19 +364,19 @@ void Data::PopulateVuln() {
   vuln_index_.insert(std::pair<std::string, float>("Honduras", 0.407296));
   vuln_index_.insert(std::pair<std::string, float>("Zambia", 0.420459));
   vuln_index_.insert(std::pair<std::string, float>("Bangladesh", 0.422107));
-  // vuln_index_.insert(std::pair<std::string, float>("Micronesia", 0.425305));
+  vuln_index_.insert(std::pair<std::string, float>("Micronesia", 0.425305));
   vuln_index_.insert(std::pair<std::string, float>("Equatorial Guinea", 0.430054));
   vuln_index_.insert(std::pair<std::string, float>("Iraq", 0.432182));
   vuln_index_.insert(std::pair<std::string, float>("Myanmar", 0.448176));
 
-  // vuln_index_.insert(std::pair<std::string, float>("Palestine", 0.450415));
+  vuln_index_.insert(std::pair<std::string, float>("Palestine", 0.450415));
   vuln_index_.insert(std::pair<std::string, float>("Bhutan", 0.460880));
   vuln_index_.insert(std::pair<std::string, float>("Ghana", 0.462565));
   vuln_index_.insert(std::pair<std::string, float>("Guatemala", 0.477179));
-  // vuln_index_.insert(std::pair<std::string, float>("Cape Verde", 0.486189));
+  vuln_index_.insert(std::pair<std::string, float>("Cape Verde", 0.486189));
   vuln_index_.insert(std::pair<std::string, float>("Turkmenistan", 0.486696));
   vuln_index_.insert(std::pair<std::string, float>("Namibia", 0.490478));
-  // vuln_index_.insert(std::pair<std::string, float>("Vanuatu", 0.490878));
+  vuln_index_.insert(std::pair<std::string, float>("Vanuatu", 0.490878));
   vuln_index_.insert(std::pair<std::string, float>("Nicaragua", 0.492491));
   vuln_index_.insert(std::pair<std::string, float>("Libya", 0.493272));
 
@@ -349,36 +395,37 @@ void Data::PopulateVuln() {
   vuln_index_.insert(std::pair<std::string, float>("Venezuela", 0.530692));
   vuln_index_.insert(std::pair<std::string, float>("Tunisia", 0.535451));
   vuln_index_.insert(std::pair<std::string, float>("Paraguay", 0.541167));
-  // vuln_index_.insert(std::pair<std::string, float>("Marshall Islands", 0.544611));
+  vuln_index_.insert(std::pair<std::string, float>("Marshall Islands", 0.544611));
   vuln_index_.insert(std::pair<std::string, float>("Philippines", 0.544923));
   vuln_index_.insert(std::pair<std::string, float>("Lebanon", 0.546332));
   vuln_index_.insert(std::pair<std::string, float>("Botswana", 0.548363));
-  // vuln_index_.insert(std::pair<std::string, float>("Saint Vincent and the Grenadines", 0.549145)); vuln_index_.insert(std::pair<std::string, float>("Azerbaijan", 0.550328));
+  vuln_index_.insert(std::pair<std::string, float>("Saint Vincent and the Grenadines", 0.549145));
+  vuln_index_.insert(std::pair<std::string, float>("Azerbaijan", 0.550328));
   vuln_index_.insert(std::pair<std::string, float>("Belize", 0.551546));
 
   vuln_index_.insert(std::pair<std::string, float>("Guyana", 0.554987));
   vuln_index_.insert(std::pair<std::string, float>("Suriname", 0.555320));
   vuln_index_.insert(std::pair<std::string, float>("Kyrgyzstan", 0.555486));
   vuln_index_.insert(std::pair<std::string, float>("Indonesia", 0.562944));
-  // vuln_index_.insert(std::pair<std::string, float>("Fiji", 0.567238));
+  vuln_index_.insert(std::pair<std::string, float>("Fiji", 0.567238));
   vuln_index_.insert(std::pair<std::string, float>("Iran", 0.567841));
   vuln_index_.insert(std::pair<std::string, float>("Serbia", 0.568934));
   vuln_index_.insert(std::pair<std::string, float>("Morocco", 0.569769));
   vuln_index_.insert(std::pair<std::string, float>("Sri Lanka", 0.571001));
   vuln_index_.insert(std::pair<std::string, float>("Ecuador", 0.575843));
 
-  // vuln_index_.insert(std::pair<std::string, float>("Maldives", 0.576299));
-  // vuln_index_.insert(std::pair<std::string, float>("Samoa", 0.580679));
+  vuln_index_.insert(std::pair<std::string, float>("Maldives", 0.576299));
+  vuln_index_.insert(std::pair<std::string, float>("Samoa", 0.580679));
   vuln_index_.insert(std::pair<std::string, float>("Colombia", 0.583850));
-  // vuln_index_.insert(std::pair<std::string, float>("Trinidad and Tobago", 0.594998));
+  vuln_index_.insert(std::pair<std::string, float>("Trinidad and Tobago", 0.594998));
   vuln_index_.insert(std::pair<std::string, float>("Grenada", 0.597669));
   vuln_index_.insert(std::pair<std::string, float>("Kosovo", 0.599085));
-  // vuln_index_.insert(std::pair<std::string, float>("Dominica", 0.604170));
+  vuln_index_.insert(std::pair<std::string, float>("Dominica", 0.604170));
   vuln_index_.insert(std::pair<std::string, float>("Panama", 0.606521));
   vuln_index_.insert(std::pair<std::string, float>("Kazakhstan", 0.607098));
   vuln_index_.insert(std::pair<std::string, float>("El Salvador", 0.607731));
 
-  // vuln_index_.insert(std::pair<std::string, float>("Tuvalu", 0.608741));
+  vuln_index_.insert(std::pair<std::string, float>("Tuvalu", 0.608741));
   vuln_index_.insert(std::pair<std::string, float>("Montenegro", 0.612065));
   vuln_index_.insert(std::pair<std::string, float>("Belarus", 0.616419));
   vuln_index_.insert(std::pair<std::string, float>("Ukraine", 0.617343));
@@ -386,36 +433,36 @@ void Data::PopulateVuln() {
   vuln_index_.insert(std::pair<std::string, float>("Vietnam", 0.626124));
   vuln_index_.insert(std::pair<std::string, float>("Mongolia", 0.626185));
   vuln_index_.insert(std::pair<std::string, float>("Albania", 0.626259));
-  // vuln_index_.insert(std::pair<std::string, float>("Seychelles", 0.628108));
-  // vuln_index_.insert(std::pair<std::string, float>("Tonga", 0.630046));
+  vuln_index_.insert(std::pair<std::string, float>("Seychelles", 0.628108));
+  vuln_index_.insert(std::pair<std::string, float>("Tonga", 0.630046));
 
   vuln_index_.insert(std::pair<std::string, float>("Oman", 0.633743));
-  // vuln_index_.insert(std::pair<std::string, float>("Mauritius", 0.635763));
+  vuln_index_.insert(std::pair<std::string, float>("Mauritius", 0.635763));
   vuln_index_.insert(std::pair<std::string, float>("Moldova", 0.635987));
   vuln_index_.insert(std::pair<std::string, float>("Russia", 0.639878));
   vuln_index_.insert(std::pair<std::string, float>("Peru", 0.645670));
   vuln_index_.insert(std::pair<std::string, float>("Bahamas", 0.653653));
   vuln_index_.insert(std::pair<std::string, float>("Romania", 0.657694));
-  // vuln_index_.insert(std::pair<std::string, float>("Palau", 0.658010));
+  vuln_index_.insert(std::pair<std::string, float>("Palau", 0.658010));
   vuln_index_.insert(std::pair<std::string, float>("China", 0.663535));
-  // vuln_index_.insert(std::pair<std::string, float>("Bahrain", 0.663702));
+  vuln_index_.insert(std::pair<std::string, float>("Bahrain", 0.663702));
 
   vuln_index_.insert(std::pair<std::string, float>("Kuwait", 0.664856));
-  // vuln_index_.insert(std::pair<std::string, float>("Cyprus", 0.665630));
+  vuln_index_.insert(std::pair<std::string, float>("Cyprus", 0.665630));
   vuln_index_.insert(std::pair<std::string, float>("Bulgaria", 0.666120));
   vuln_index_.insert(std::pair<std::string, float>("Turkey", 0.677438));
-  // vuln_index_.insert(std::pair<std::string, float>("Barbados", 0.681515));
+  vuln_index_.insert(std::pair<std::string, float>("Barbados", 0.681515));
   vuln_index_.insert(std::pair<std::string, float>("Macedonia", 0.685990));
-  // vuln_index_.insert(std::pair<std::string, float>("San Marino", 0.687314));
-  // vuln_index_.insert(std::pair<std::string, float>("Saint Kitts and Nevis", 0.691572)); vuln_index_.insert(std::pair<std::string, float>("Antigua and Barbuda", 0.693938));
+  vuln_index_.insert(std::pair<std::string, float>("San Marino", 0.687314));
+  vuln_index_.insert(std::pair<std::string, float>("Saint Kitts and Nevis", 0.691572)); vuln_index_.insert(std::pair<std::string, float>("Antigua and Barbuda", 0.693938));
   vuln_index_.insert(std::pair<std::string, float>("Cuba", 0.695910));
 
   vuln_index_.insert(std::pair<std::string, float>("South Africa", 0.697292));
-  // vuln_index_.insert(std::pair<std::string, float>("Malta", 0.706869));
+  vuln_index_.insert(std::pair<std::string, float>("Malta", 0.706869));
   vuln_index_.insert(std::pair<std::string, float>("Armenia", 0.706912));
   vuln_index_.insert(std::pair<std::string, float>("Argentina", 0.707041));
   vuln_index_.insert(std::pair<std::string, float>("Jordan", 0.707361));
-  // vuln_index_.insert(std::pair<std::string, float>("Taiwan", 0.709691));
+  vuln_index_.insert(std::pair<std::string, float>("Taiwan", 0.709691));
   vuln_index_.insert(std::pair<std::string, float>("Thailand", 0.711334));
   vuln_index_.insert(std::pair<std::string, float>("Brazil", 0.716641));
   vuln_index_.insert(std::pair<std::string, float>("Croatia", 0.719996));
@@ -425,7 +472,7 @@ void Data::PopulateVuln() {
   vuln_index_.insert(std::pair<std::string, float>("Georgia", 0.735821));
   vuln_index_.insert(std::pair<std::string, float>("Saudi Arabia", 0.736844));
   vuln_index_.insert(std::pair<std::string, float>("Costa Rica", 0.736960));
-  // vuln_index_.insert(std::pair<std::string, float>("Liechtenstein", 0.737219));
+  vuln_index_.insert(std::pair<std::string, float>("Liechtenstein", 0.737219));
   vuln_index_.insert(std::pair<std::string, float>("Uruguay", 0.745957));
   vuln_index_.insert(std::pair<std::string, float>("Monaco", 0.753737));
   vuln_index_.insert(std::pair<std::string, float>("Malaysia", 0.761135));
@@ -449,7 +496,7 @@ void Data::PopulateVuln() {
   vuln_index_.insert(std::pair<std::string, float>("Belgium", 0.870933));
   vuln_index_.insert(std::pair<std::string, float>("Austria", 0.874243));
   vuln_index_.insert(std::pair<std::string, float>("Spain", 0.875475));
-  // vuln_index_.insert(std::pair<std::string, float>("Luxembourg", 0.875694));
+  vuln_index_.insert(std::pair<std::string, float>("Luxembourg", 0.875694));
   vuln_index_.insert(std::pair<std::string, float>("Singapore", 0.878289));
   vuln_index_.insert(std::pair<std::string, float>("South Korea", 0.879402));
   vuln_index_.insert(std::pair<std::string, float>("Portugal", 0.888782));
@@ -568,6 +615,8 @@ std::string Data::CategorizeLoc(const std::string& country) {
     to_return = "Caribbean";
   } else if (std::count(uk.begin(), uk.end(), country) != 0) {
     to_return = "UK";
+  } else if (std::count(italy.begin(), italy.end(), country) != 0) {
+    to_return = "Italy Area";
   } else {
     to_return = country;
   }

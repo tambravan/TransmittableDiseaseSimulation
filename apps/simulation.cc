@@ -37,6 +37,9 @@ void Simulation::setup() {
 
   //Load the airport map
   airport_ = ci::gl::Texture::create(ci::loadImage("C:/Users/tejas/Downloads/InternetDownloads/cinder_0.9.2_vc2015/cinder_0.9.2_vc2015/MyProjects/TransmittableDiseaseSimulation/assets/airport.png"));
+
+  //Set up the engine
+  e.PopulateRegions();
 }
 
 void Simulation::update() {
@@ -50,6 +53,7 @@ void Simulation::draw() {
   //Clear
   cinder::gl::clear(cinder::Color(0, 0, 0));
 
+  ci::gl::color(ci::Color(1, 1, 1));
   //Create bounds for background map image and draw it in cinder
   ci::Rectf map_bounds(0, 0, worldmap_->getWidth() / 3,
                        worldmap_->getHeight() / 3);
@@ -95,6 +99,14 @@ void Simulation::draw() {
   //Create start button
   if (ImGui::Button("Initialize/Restart simulation with selected location")) {
     //engine::Begin(country);
+  }
+
+  ci::gl::color(ci::Color(1, 0, 0));
+
+  for (const auto& pair : e.regions_) {
+    auto region = pair.second;
+    ci::gl::drawStrokedCircle(ci::vec2(region.display_x, region.display_y), region.display_size);
+    ci::gl::drawSolidCircle(ci::vec2(region.display_x, region.display_y), region.infected * region.display_size);
   }
 }
 

@@ -55,6 +55,7 @@ class Data {
   std::vector<std::string> china;
   std::vector<std::string> caribbean;
   std::vector<std::string> uk;
+  std::vector<std::string> italy;
 
   std::string CategorizeLoc(const std::string& country);
 

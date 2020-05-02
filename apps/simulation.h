@@ -42,6 +42,8 @@ class Simulation : public cinder::app::App {
   //Countries vector
   std::vector<const char*> countries_;
 
+  //Engine instance
+  engine::Engine e;
 };
 
 }  // namespace simulation
