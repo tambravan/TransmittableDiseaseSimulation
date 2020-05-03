@@ -64,3 +64,6 @@
   - Start creating engine::UpdateInfections()
     - Updates infection numbers and graphically models them
     - This is where consideration of all data, factors, etc. come into play
+    
+- **05/03/2020** Fix start/pause features
+  - Initialize and reset the engine instead, so start pause is only called once the simulation has begun

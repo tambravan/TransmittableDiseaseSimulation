@@ -61,6 +61,12 @@ class Engine {
 
   //Updates the infected numbers
   void UpdateInfections();
+
+  //Resets the simulation
+  void Reset();
+
+  //Represents whether or not the simulation has been initialized
+  bool has_started;
 };
 }
 #endif  // FINALPROJECT_ENGINE_H

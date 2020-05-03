@@ -12,6 +12,8 @@ void engine::Engine::Begin(std::string startloc) {
   //Set the start location again
   start_loc = d.CategorizeLoc(startloc);
 
+  has_started = true;
+
   //Reset infected counts
   for (auto& pair : regions_) {
     pair.second.infected = 0;
@@ -86,6 +88,17 @@ void Engine::UpdateInfections() {
     if (pair.second.infected >= 1) {
       pair.second.infected = 1;
     }
+  }
+}
+
+void Engine::Reset() {
+  if (has_started) {
+    //Reset infected counts
+    for (auto& pair : regions_) {
+      pair.second.infected = 0;
+    }
+
+    has_started = false;
   }
 }
 

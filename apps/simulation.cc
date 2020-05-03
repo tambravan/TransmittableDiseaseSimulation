@@ -40,6 +40,7 @@ void Simulation::setup() {
 
   //Set up the engine
   e.PopulateRegions();
+  e.has_started = false;
 }
 
 void Simulation::update() {
@@ -75,7 +76,13 @@ void Simulation::draw() {
 
   //Create pause/resume button
   if (ImGui::Button("Start/Pause")) {
-    StartPause();
+    if (e.has_started) {
+      StartPause();
+    }
+  }
+
+  if (ImGui::Button("Reset")) {
+    e.Reset();
   }
 
   //Create listbox for start location
@@ -102,10 +109,16 @@ void Simulation::draw() {
     e.Begin(country);
   }
 
-  ci::gl::color(ci::Color(1, 0, 0));
-
   for (const auto& pair : e.regions_) {
     auto region = pair.second;
+    if (region.infected <= 0.2) {
+        ci::gl::color(ci::Color(0, 1, 0));
+    } else if (region.infected <= .6) {
+        ci::gl::color(ci::Color(1, 1, 0));
+    } else {
+        ci::gl::color(ci::Color(1, 0, 0));
+    }
+
     ci::gl::drawStrokedCircle(ci::vec2(region.display_x, region.display_y), region.display_size);
     ci::gl::drawSolidCircle(ci::vec2(region.display_x, region.display_y), region.infected * region.display_size);
   }
