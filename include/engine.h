@@ -54,10 +54,15 @@ class Engine {
   //Sets region details given inputs
   void SetRegionDetails(const std::string& region, int x, int y, int size, const std::string& cont);
 
+  float LogisticGrowth(const Region& r);
+
+  //Map of previous regions
+  std::map<std::string, engine::Region> prev_regions_;
+
  public:
   //Method that is called when the game starts. This sets the starting location
   //And resets other factors
-  void Begin(std::string start_loc);
+  void Begin(const std::string& start_loc);
 
   //Map of strings to regions for each region
   std::map<std::string, engine::Region> regions_;

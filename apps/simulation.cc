@@ -81,6 +81,12 @@ void Simulation::draw() {
     }
   }
 
+  if (is_paused_) {
+    ImGui::Text("Paused");
+  } else {
+    ImGui::Text("Running");
+  }
+
   if (ImGui::Button("Reset")) {
     is_paused_ = true;
     e.Reset();

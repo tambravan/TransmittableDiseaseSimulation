@@ -68,3 +68,4 @@
 - **05/03/2020** Fix start/pause features
   - Initialize and reset the engine instead, so start pause is only called once the simulation has begun
   - Implement basic functionality for actual spread, cure, infection probabilities
+  - Implement logistic growth equations for spread (need to debug)

@@ -5,10 +5,11 @@
 #include "engine.h"
 
 #include <iostream>
+#include <ctgmath>
 
 namespace engine {
 
-void engine::Engine::Begin(std::string startloc) {
+void engine::Engine::Begin(const std::string& startloc) {
   //Set the start location again
   start_loc = d.CategorizeLoc(startloc);
 
@@ -90,14 +91,27 @@ void Engine::SetRegionDetails(const std::string& region, int x, int y, int size,
   regions_.at(region).continent = cont;
 }
 
-static float LogisticGrowth(const Region& r) {
+float Engine::LogisticGrowth(const Region& r) {
   float reg_index = r.reg_index;
   float infected = r.infected;
 
-  return infected * 1.01;
+  if (infected <= 0) {
+    return 0;
+  }
+
+  //Logistic Equation modeled from http://www.sci.wsu.edu/math/faculty/hudelson/logisticlesson.html
+
+  float new_infected;
+
+  float x = -1 * log(1/(infected * (1/(.001) - 1) * speed * reg_index))/r0;
+
+  float y = 1/(1 + (1/.001 - 1)*pow(exp(1.0),(-1*reg_index*(x + 1))));
+
+  return y * speed * (1-reg_index);
 }
 
 void Engine::UpdateInfections() {
+  prev_regions_ = regions_;
   for (auto& pair : regions_) {
     if (pair.second.infected == 0) {
       float infection_chance = (1 - pair.second.reg_index) * 100; //Number from 25 to 75, lower means better medicine
@@ -129,6 +143,17 @@ void Engine::UpdateInfections() {
     if (pair.second.infected >= 1) {
       pair.second.infected = 1;
     }
+  }
+
+  bool ended = true;
+  for (const auto& pair : regions_) {
+    if (prev_regions_.at(pair.first).infected != pair.second.infected) {
+      ended = false;
+    }
+  }
+
+  if (ended) {
+    exit(5);
   }
 }
 
