@@ -82,6 +82,7 @@ void Simulation::draw() {
   }
 
   if (ImGui::Button("Reset")) {
+    is_paused_ = true;
     e.Reset();
   }
 
@@ -106,6 +107,7 @@ void Simulation::draw() {
 
   //Create start button
   if (ImGui::Button("Initialize/Restart simulation with selected location")) {
+    is_paused_ = true;
     e.Begin(country);
   }
 

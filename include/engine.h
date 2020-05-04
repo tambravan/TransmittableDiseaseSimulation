@@ -25,6 +25,9 @@ class Region {
   //Percent of the population that has been infected (0 to 1)
   float infected;
 
+  //Continent of region
+  std::string continent;
+
   //Default constructor
   Region::Region();
 
@@ -42,8 +45,14 @@ class Engine {
   float r0;
   float speed;
 
+  //List of infected continents
+  std::vector<std::string> infected_conts_;
+
+  static constexpr int kCureChance = 4000;
+  static constexpr int kInfectionChance = 4000;
+
   //Sets region details given inputs
-  void SetRegionDetails(const std::string& region, int x, int y, int size);
+  void SetRegionDetails(const std::string& region, int x, int y, int size, const std::string& cont);
 
  public:
   //Method that is called when the game starts. This sets the starting location
