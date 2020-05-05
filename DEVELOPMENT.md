@@ -72,4 +72,5 @@
   
 - **05/04/2020** Implement scientifically accurate growth curves
   - Max infections based on R0 and index
-  - Continue debugging issues with logistic growth
+  - Fix issues with logistic growth
+  - Replace in line constants with constant values

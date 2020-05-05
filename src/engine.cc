@@ -29,7 +29,7 @@ void engine::Engine::Begin(const std::string& startloc) {
   PopulateMax();
 
   //Set the start location to have .01% infected
-  regions_.at(start_loc).infected = 0.0001;
+  regions_.at(start_loc).infected = y0;
   infected_conts_.push_back(regions_.at(start_loc).continent);
 }
 
@@ -98,47 +98,42 @@ void Engine::SetRegionDetails(const std::string& region, int x, int y, int size,
 }
 
 float Engine::LogisticGrowth(const Region& r) {
-  //float reg_index = r.reg_index;
-  //float infected = r.infected;
 
-  //if (infected <= 0) {
-  //  return 0;
-  //}
+  float c = (1/y0) - 1;
 
-  //Logistic Equation modeled from http://www.sci.wsu.edu/math/faculty/hudelson/logisticlesson.html
+  float t = (-1*log((r.max_infect - r.infected)/(r.max_infect * c)))/(r0*r0_multiplier);
 
-  //float new_infected;
+  float raw_new_infected = r.max_infect/(1+c*std::pow(exp(1), -1*r0*r0_multiplier*(t + t_step)));
 
-  //float x = -1 * log(1/(infected * (1/(.001) - 1) * speed * reg_index))/r0;
-
-  //float y = 1/(1 + (1/.001 - 1)*pow(exp(1.0),(-1*reg_index*(x + 1))));
-
-  //return y * speed * (1-reg_index);
-  return r.infected * 1.05;
+  return raw_new_infected * (1-r.reg_index);
 }
 
 void Engine::UpdateInfections() {
   prev_regions_ = regions_;
   for (auto& pair : regions_) {
     if (pair.second.infected == 0) {
-      float infection_chance = (1 - pair.second.reg_index) * 100; //Number from 25 to 75, lower means better medicine
+      float infection_chance = (1 - pair.second.reg_index) * pct_mult; //Number from 25 to 75, lower means better medicine
       //If there is already an infection on the continent, the spread probability goes up
       if (std::count(infected_conts_.begin(), infected_conts_.end(), pair.second.continent) != 0) {
-        if (std::rand() % kInfectionChance <= infection_chance) {
-          pair.second.infected = .001;
+        if (std::rand() % kInfectionChance <= speed * infection_chance) {
+          pair.second.infected = y0;
         }
       } else {
-        if (std::rand() % (kInfectionChance * 10) <= infection_chance) {
-          pair.second.infected = .001;
+        if (std::rand() % (kInfectionChance * new_cont_mult) <= infection_chance) {
+          pair.second.infected = y0;
         }
       }
     } else {
+      if (std::count(infected_conts_.begin(), infected_conts_.end(), pair.second.continent) == 0) {
+        infected_conts_.push_back(pair.second.continent);
+      }
+
       //Probability that it gets cured
-      float cure_index = pair.second.reg_index * 100; //Number from 25 to 75, higher means better medicine in country
+      float cure_index = pair.second.reg_index * pct_mult; //Number from 25 to 75, higher means better medicine in country
 
       //If a random roll from 1 to kCureChance is less than the index, the country has eradicated disease
       //To be eligible to eradicate, infections must be less than .5%
-      if (pair.second.infected <= .005) {
+      if (pair.second.infected <= cure_thresh) {
         if (std::rand() % kCureChance <= cure_index) {
           pair.second.infected = 0;
         }
@@ -150,6 +145,7 @@ void Engine::UpdateInfections() {
     if (pair.second.infected >= pair.second.max_infect) {
       pair.second.infected = pair.second.max_infect;
     }
+
   }
 
   bool ended = true;
@@ -169,7 +165,7 @@ void Engine::PopulateMax() {
   for (auto& pair : regions_) {
     float index = r0 * (1 - pair.second.reg_index) / 7.5; // Between .01666667 and 1
 
-    index *= (std::rand() % 100) / 50.0; //0 to 2, rounded 2 dp
+    index *= (std::rand() % 100) / 25.0; //0 to 4, rounded 2 dp
 
     if (index >= 1) {
       index = 1;

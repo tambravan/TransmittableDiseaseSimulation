@@ -70,13 +70,13 @@ void Simulation::draw() {
   for (auto port : d.airports) {
     //Port is an array of 2 ints with the airport coords
     //Airports should be 10x10
-    ci::Rectf rect(port.at(0), port.at(1), port.at(0) + 10, port.at(1) + 10);
+    ci::Rectf rect(port.at(0), port.at(1), port.at(0) + port_width, port.at(1) + port_width);
     ci::gl::draw(airport_, rect);
   }
 
   //Create sliders for the UI
-  ImGui::SliderFloat("Speed Multiplier", &speed_slider_, .25, 2);
-  ImGui::SliderFloat("R0 (contagiousness of disease)", &r_0_, .5, 10);
+  ImGui::SliderFloat("Speed Multiplier", &speed_slider_, e.speedmin, e.speedmax);
+  ImGui::SliderFloat("R0 (contagiousness of disease)\nThis cannot be changed during sim", &r_0_, e.r0min, e.r0max);
 
   //Create pause/resume button
   if (ImGui::Button("Start/Pause")) {
@@ -110,6 +110,16 @@ void Simulation::draw() {
   std::string region_index = "Regional Index (Adjusted): " + std::to_string(d.vuln_by_region_.at(d.CategorizeLoc(countries_[starting_country_])));
   ImGui::Text(region_index.data());
 
+  //Display the current infections
+  if (e.has_started) {
+    std::string region = d.CategorizeLoc(country);
+    float infected = e.regions_.at(region).infected;
+
+    std::stringstream stream;
+    stream << "Regional Infections: " << std::fixed << std::setprecision(2) << infected * 100 << "%";
+    ImGui::Text(stream.str().data());
+  }
+
   //Create start button
   if (ImGui::Button("Initialize/Restart simulation with selected location")) {
     is_paused_ = true;
@@ -119,9 +129,9 @@ void Simulation::draw() {
 
   for (const auto& pair : e.regions_) {
     auto region = pair.second;
-    if (region.infected <= 0.2) {
+    if (region.infected <= e.concern_thresh) {
         ci::gl::color(ci::Color(0, 1, 0));
-    } else if (region.infected <= .6) {
+    } else if (region.infected <= e.critical_thresh) {
         ci::gl::color(ci::Color(1, 1, 0));
     } else {
         ci::gl::color(ci::Color(1, 0, 0));
@@ -131,6 +141,7 @@ void Simulation::draw() {
     ci::gl::drawSolidCircle(ci::vec2(region.display_x, region.display_y), region.infected * region.display_size);
   }
 
+  /*
   if (e.finished) {
     float avg_infect = 0;
     for (const auto& pair : e.regions_) {
@@ -152,6 +163,7 @@ void Simulation::draw() {
 
     is_paused_ = true;
   }
+   */
 }
 
 void Simulation::StartPause() {

@@ -44,6 +44,8 @@ class Simulation : public cinder::app::App {
 
   //Engine instance
   engine::Engine e;
+
+  int port_width = 10;
 };
 
 }  // namespace simulation

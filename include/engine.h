@@ -50,8 +50,18 @@ class Engine {
   //List of infected continents
   std::vector<std::string> infected_conts_;
 
-  static constexpr int kCureChance = 4000;
-  static constexpr int kInfectionChance = 4000;
+  static constexpr int kCureChance = 2000;
+  static constexpr int kInfectionChance = 2500;
+
+  float r0_multiplier = .1;
+
+  float t_step = .0000001;
+
+  float cure_thresh = .005;
+
+  int new_cont_mult = 20;
+
+  int pct_mult = 100;
 
   //Sets region details given inputs
   void SetRegionDetails(const std::string& region, int x, int y, int size, const std::string& cont);
@@ -62,6 +72,8 @@ class Engine {
   std::map<std::string, engine::Region> prev_regions_;
 
   void PopulateMax();
+
+  float y0 = .0001;
 
  public:
   //Method that is called when the game starts. This sets the starting location
@@ -86,6 +98,15 @@ class Engine {
   bool has_started;
 
   bool finished;
+
+  float concern_thresh = .1;
+  float critical_thresh = .25;
+
+  float speedmax = 2;
+  float speedmin = .25;
+
+  float r0min = .5;
+  float r0max = 10;
 };
 }
 #endif  // FINALPROJECT_ENGINE_H
