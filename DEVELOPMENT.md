@@ -71,5 +71,5 @@
   - Implement logistic growth equations for spread (need to debug)
   
 - **05/04/2020** Implement scientifically accurate growth curves
-  - Max infections based on R0
+  - Max infections based on R0 and index
   - Continue debugging issues with logistic growth
