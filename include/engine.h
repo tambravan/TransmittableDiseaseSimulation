@@ -25,11 +25,13 @@ class Region {
   //Percent of the population that has been infected (0 to 1)
   float infected;
 
+  float max_infect;
+
   //Continent of region
   std::string continent;
 
   //Default constructor
-  Region::Region();
+  Region();
 
 
 };
@@ -59,6 +61,8 @@ class Engine {
   //Map of previous regions
   std::map<std::string, engine::Region> prev_regions_;
 
+  void PopulateMax();
+
  public:
   //Method that is called when the game starts. This sets the starting location
   //And resets other factors
@@ -71,16 +75,17 @@ class Engine {
   void PopulateRegions();
 
   //Sets the factors that are changed from the UI
-  void SetSliders(float set_r0, float set_speed);
+  void SetSpeed(float set_speed);
 
   //Updates the infected numbers
   void UpdateInfections();
 
-  //Resets the simulation
-  void Reset();
+  void SetR0(float set_r0);
 
   //Represents whether or not the simulation has been initialized
   bool has_started;
+
+  bool finished;
 };
 }
 #endif  // FINALPROJECT_ENGINE_H

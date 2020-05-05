@@ -69,3 +69,7 @@
   - Initialize and reset the engine instead, so start pause is only called once the simulation has begun
   - Implement basic functionality for actual spread, cure, infection probabilities
   - Implement logistic growth equations for spread (need to debug)
+  
+- **05/04/2020** Implement scientifically accurate growth curves
+  - Max infections based on R0
+  - Continue debugging issues with logistic growth

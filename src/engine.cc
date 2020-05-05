@@ -14,17 +14,22 @@ void engine::Engine::Begin(const std::string& startloc) {
   start_loc = d.CategorizeLoc(startloc);
 
   has_started = true;
+  finished = false;
 
   //Reset infected counts
   for (auto& pair : regions_) {
     pair.second.infected = 0;
+    //pair.second.max_infect = 0;
   }
 
   //Clear infected continents
   infected_conts_.clear();
 
-  //Set the start location to have .1% infected
-  regions_.at(start_loc).infected = 0.001;
+  //Set maxinfects
+  PopulateMax();
+
+  //Set the start location to have .01% infected
+  regions_.at(start_loc).infected = 0.0001;
   infected_conts_.push_back(regions_.at(start_loc).continent);
 }
 
@@ -80,10 +85,11 @@ void engine::Engine::PopulateRegions() {
   SetRegionDetails("Eastern Europe", 715, 197, 13, "EU");
   SetRegionDetails("Turkey", 760, 215, 22, "EU");
 }
-void Engine::SetSliders(float set_r0, float set_speed) {
-  r0 = set_r0;
+
+void Engine::SetSpeed(float set_speed) {
   speed = set_speed;
 }
+
 void Engine::SetRegionDetails(const std::string& region, int x, int y, int size, const std::string& cont) {
   regions_.at(region).display_x = x;
   regions_.at(region).display_y = y;
@@ -92,22 +98,23 @@ void Engine::SetRegionDetails(const std::string& region, int x, int y, int size,
 }
 
 float Engine::LogisticGrowth(const Region& r) {
-  float reg_index = r.reg_index;
-  float infected = r.infected;
+  //float reg_index = r.reg_index;
+  //float infected = r.infected;
 
-  if (infected <= 0) {
-    return 0;
-  }
+  //if (infected <= 0) {
+  //  return 0;
+  //}
 
   //Logistic Equation modeled from http://www.sci.wsu.edu/math/faculty/hudelson/logisticlesson.html
 
-  float new_infected;
+  //float new_infected;
 
-  float x = -1 * log(1/(infected * (1/(.001) - 1) * speed * reg_index))/r0;
+  //float x = -1 * log(1/(infected * (1/(.001) - 1) * speed * reg_index))/r0;
 
-  float y = 1/(1 + (1/.001 - 1)*pow(exp(1.0),(-1*reg_index*(x + 1))));
+  //float y = 1/(1 + (1/.001 - 1)*pow(exp(1.0),(-1*reg_index*(x + 1))));
 
-  return y * speed * (1-reg_index);
+  //return y * speed * (1-reg_index);
+  return r.infected * 1.05;
 }
 
 void Engine::UpdateInfections() {
@@ -140,8 +147,8 @@ void Engine::UpdateInfections() {
       pair.second.infected = LogisticGrowth(pair.second);
     }
 
-    if (pair.second.infected >= 1) {
-      pair.second.infected = 1;
+    if (pair.second.infected >= pair.second.max_infect) {
+      pair.second.infected = pair.second.max_infect;
     }
   }
 
@@ -153,19 +160,27 @@ void Engine::UpdateInfections() {
   }
 
   if (ended) {
-    exit(5);
+    finished = true;
   }
 }
 
-void Engine::Reset() {
-  if (has_started) {
-    //Reset infected counts
-    for (auto& pair : regions_) {
-      pair.second.infected = 0;
+
+void Engine::PopulateMax() {
+  for (auto& pair : regions_) {
+    float index = r0 * (1 - pair.second.reg_index) / 7.5; // Between .01666667 and 1
+
+    index *= (std::rand() % 100) / 50.0; //0 to 2, rounded 2 dp
+
+    if (index >= 1) {
+      index = 1;
     }
 
-    has_started = false;
+    pair.second.max_infect = index;
   }
+}
+
+void Engine::SetR0(float set_r0) {
+  r0 = set_r0;
 }
 
 Region::Region() = default;

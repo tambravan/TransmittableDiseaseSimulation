@@ -3,9 +3,12 @@
 #include "simulation.h"
 
 #include <cinder/ImageIo.h>
+#include <cinder/Text.h>
 #include <cinder/app/App.h>
 #include <cinder/gl/draw.h>
 #include <cinder/gl/wrapper.h>
+
+#include <sstream>
 
 #include "CinderImGui.h"
 
@@ -41,12 +44,13 @@ void Simulation::setup() {
   //Set up the engine
   e.PopulateRegions();
   e.has_started = false;
+  e.finished = false;
 }
 
 void Simulation::update() {
   //Simulation should only run if it is not paused
   if (!is_paused_) {
-    e.SetSliders(r_0_, speed_slider_);
+    e.SetSpeed(speed_slider_);
     e.UpdateInfections();
   }
 }
@@ -87,11 +91,6 @@ void Simulation::draw() {
     ImGui::Text("Running");
   }
 
-  if (ImGui::Button("Reset")) {
-    is_paused_ = true;
-    e.Reset();
-  }
-
   //Create listbox for start location
   ImGui::ListBox("Starting Country", &starting_country_, countries_.data(), countries_.size(),10);
 
@@ -114,6 +113,7 @@ void Simulation::draw() {
   //Create start button
   if (ImGui::Button("Initialize/Restart simulation with selected location")) {
     is_paused_ = true;
+    e.SetR0(r_0_);
     e.Begin(country);
   }
 
@@ -130,10 +130,34 @@ void Simulation::draw() {
     ci::gl::drawStrokedCircle(ci::vec2(region.display_x, region.display_y), region.display_size);
     ci::gl::drawSolidCircle(ci::vec2(region.display_x, region.display_y), region.infected * region.display_size);
   }
+
+  if (e.finished) {
+    float avg_infect = 0;
+    for (const auto& pair : e.regions_) {
+      avg_infect += pair.second.infected;
+    }
+
+    avg_infect = 100 * avg_infect/e.regions_.size();
+
+    std::stringstream stream;
+
+    stream << "Simulation has ended." << std::endl << "Average infection rate (world): " << std::fixed << std::setprecision(2) << avg_infect << "%";
+
+    std::string end_txt = stream.str();
+
+    ci::gl::color(ci::Color(0, 0, 0));
+    ci::TextBox end = ci::TextBox().alignment(ci::TextBox::CENTER).font(ci::Font("Times New Roman", 100)).text(end_txt);
+    ci::gl::Texture2dRef text = ci::gl::Texture2d::create(end.render());
+    ci::gl::draw(text);
+
+    is_paused_ = true;
+  }
 }
 
 void Simulation::StartPause() {
-  is_paused_ = !is_paused_;
+  if (!e.finished) {
+    is_paused_ = !is_paused_;
+  }
 }
 
 }  // namespace simulation
