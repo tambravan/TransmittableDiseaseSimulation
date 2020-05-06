@@ -1,167 +1,57 @@
-# Transmittable Disease Simulation: Generating Heatmaps for Diseases Based on Various Real World Factors
-A C++ project by Tejas Ambravan
+![](resources/cover_image.png)
 
-## Project Summary
-  This project is created in light of the recent events of the COVID-19 Global Pandemic. This is a simulation that is run on the spreading of diseases based on various factors. Users will be able to pick a starting location for a disease, and adjust various factors that contribute to disease spread. This would include sliders for variables such as R<sub>0</sub>, research funding, social distancing measures, awareness, travel restrictions, economic factors, etc.
-  
-  The end goal is to be as realistic as possible in the simulation. Below are detailed items to take into account for the major variables in disease spread.
-  
-  The main deliverable is a graphical representation of disease spread using C++ libraries and framework. This will be the form of a heatmap mapping the spread of the disease.
-  
-## Background
-  I have always had an interest in the spreading of major diseases and past pandemics, ranging from extremely early plagues such as the Plague of Justinian in the 6th century all the way to recent outbreaks such as SARS, Swine Flu, and COVID-19. Current world events allow an opportunity to channel this interest into a C++ project.
-  
-## Main Spread Factors (By Country)
-These factors can be read about in more detail with descriptions [here](https://www.rand.org/pubs/research_reports/RR1605.html). Data was collected through this study, and all credit to them for calculating the indices.
-### Population/Quality of life
-  * Population Density
-  * Urbanization
-  * Population Growth
-  * Education/Literacy
-  * Population mobility
-    * High mobility increase disease susceptability
-  * Water, sanitation, and hygiene
-  * Human Rights
-  
-### Medical Capabilities
-  * Medical care workforce
-  * Medical expenditures
-  * Medical infrastructure
-  * Overall health status
-  * Health services/primary care delivery
-  * Basic public health
-  * International Health Regulation core capacity
-  
-### Social/Economic/Political status
-  * [GHSA](https://www.thecompassforsbc.org/sbcc-tools/ghsa-action-packages) Action Packages
-  * Governance
-  * Corruption
-  * Service provision
-  * Decentralization
-  * Democracy
-  * Government Stability
-  * Conflict
+# Transmittable Disease Simulation
+A C++ Project by Tejas Ambravan
 
-### Environment
-  * Precipitation/Rainfall
-  * Temperature
-  * Land Use
-   
-## External Libraries and Sources
-This Transmittable Disease Simulation will leverage the following libraries:
-  * Cinder
-    * Cinder is a free open source library for professional quality creative and visual coding in C++
-    * Cinder can be read more about [here](https://libcinder.org/).
-  * Cinder Block: Cinder-ImGui
-    * ImGui is a graphical user interface which works with Cinder. It simplifies the process of creating user interfaces and improves visualization and debugging.
-    * ImGui is suited for real time 3D applications, full screen applications, games, etc.
-    * More about ImGui can be read about [here](https://github.com/simongeilfus/Cinder-ImGui) (GitHub).
-  * Research study: Identifying Future Disease Hot Spots
-    * This is a study done by Melinda Moore, Bill Gelfeld, Adeyemi Theophilus Okunogbe, and Christopher Paul
-    * This study takes into account the current state of every country and gives a ranking (disease vulnerability index) and a score normalized from 0 to 1, inclusive ([0, 1])
-    * More can be read about [here](https://www.rand.org/pubs/research_reports/RR1605.html)
-    * The calculated index takes into account all factors listed above
-### Regional Divisions
-These are the regions the world will be divided into for simplicity
-* North America
-    * Canada
-    * USA
-    * Mexico
-    * Caribbean
-    * Central America
-* South America
-    * Brazil
-    * Northern South America
-        * Colombia
-        * Venezuela
-        * Guyana
-        * Suriname
-    * Western South America
-        * Peru
-        * Ecuador
-        * Bolivia
-    * Southern South America
-        * Argentina
-        * Chile
-        * Paraguay
-        * Uruguay
-* Europe
-    * Scandinavia
-        * Norway
-        * Sweden
-        * Finland
-        * Denmark
-    * Russia/Lithuania/Latvia/Estonia
-    * Germany/Poland/Belarus
-    * UK
-    * France/Netherlands/Belgium/Switzerland
-    * Spain/Portugal
-    * Italy
-    * Ukraine/Romania
-    * Central Europe
-        * Austria
-        * Hungary
-        * Czech Republic
-        * Slovakia
-    * Eastern Europe
-        * Slovenia
-        * Croatia
-        * Bosnia and Herzegovina
-        * Serbia
-        * Bulgaria
-        * Greece
-        * Etc.
-* Africa
-    * Southern Africa
-        * South of 7°S latitude
-    * Central Africa
-        * Somalia
-        * Ethiopia
-        * Kenya
-        * DRC
-        * Gabon
-        * CAR
-        * Cameroon
-        * ROC
-        * Uganda
-        * Rwanda
-    * West Africa
-        * West of 10°E longitude
-    * North Africa
-        * Egypt
-        * Libya
-        * Chad
-        * Sudan
-        * Eritrea
-* Asia
-    * Turkey
-    * Middle East
-        * Saudi Arabia
-        * Yemen
-        * Oman
-        * UAE
-        * Qatar
-        * Israel
-        * Jordan
-        * Iraq
-        * Lebanon
-        * Syria
-        * Kuwait
-    * Iran
-    * Kazakhstan
-    * India/Nepal/Bangladesh/Sri Lanka
-    * Pakistan/Afghanistan
-    * Turkmenistan/Uzbekistan/Kyrgyzstan/Tajikistan
-    * Mongolia
-    * China
-    * Japan
-    * South East Asia
-        * Myanmar
-        * Thailand
-        * Laos
-        * Cambodia
-        * Vietnam
-        * Malaysia
-        * Singapore
-    * Indonesia/Brunei/PNG
-* Australia/NZ/Pacific Islands
+### Getting Started
+First thigs first, the project should be configured using cinder
+and the Cinder-ImGui block.
+
+Configuring cinder can be looked in to further
+[here](https://libcinder.org/docs/guides/windows-setup/index.html)
+(Cinder), and the Cinder-ImGui library can be read about
+[here](https://github.com/simongeilfus/Cinder-ImGui) (ImGui)
+
+This project also uses
+[Microsoft Visual C++](https://www.microsoft.com/en-us/download/details.aspx?id=48145)
+frameworks, which can be installed and configured.
+
+Once the project is configured, just hit run and it should be
+good to go! Ensure that the working directory is set as
+the root directory (~/TransmittableDiseaseSimulation)
+or some Image files may not load correctly.
+
+### Controlling the UI
+After the project runs, you will be greeted with
+a blank world map and a user interface panel, shown below.
+![](resources/controls.png)
+
+Before the simulation starts, use the listbox labeled "starting country"
+to choose the starting country. Below the list box there will be information
+about the country, including its Disease Vulnerability index,
+the region it belongs to, and the regional average index. Indices
+range from [.25, .75] and higher means the country is less vulnerable.
+
+Additionally, set a value for
+[R0](https://en.wikipedia.org/wiki/Basic_reproduction_number) -
+R0 essentially represents the contagiousness
+of a disease. It represents the expected number of cases directly generated
+by a single case.
+
+After you have chosen desired settings, press Initialize
+on the bottom, and you should see a new row in the information
+text area: A percentage of infections in the area selected.
+
+When ready, press start, and watch the heatmap. Speed can be adjusted during
+the sim, but R0 cannot. Click through the countries to see live updates
+on their infection rates.
+
+When the simulation is over (the counts reach a steady state),
+you will see a text at the center of the screen letting you know,
+and also a global infection count. Simply select a new country, adjust
+R0, and initialize and you are good to go for another simulation!
+
+### License
+This is licenced under the MIT license, see [LICENCE](LICENSE) for more information.
+
+Thank you!

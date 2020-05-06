@@ -15,7 +15,8 @@
 - **04/20/2020** Fix and configure ImGui
   - Add sliders, text, etc to experiment with features
 
-- **04/23/2020 - 04/24/2020** Find image to use as background for project, set its size
+- **04/23/2020 - 04/24/2020** Find image to use as background for project
+  - Load image and find ideal size
   - Start developing UI in ImGui
 
 - **04/25/2020** Find existing data for disease vulnerability
@@ -35,16 +36,20 @@
   
 - **04/28/2020** Work with ImGui to create a listbox for displaying data
   - List box should show starting countries and the stats when selected
-  - Need to figure out issues with types (ImGui uses char* instead of std::string)
+  - Need to figure out issues with types (ImGui uses char* instead of
+  std::string)
   
 - **04/28/2020** Create engine.cc/.h, the core of the game
-  - Create a begin method and categorize method, which store the start location and reset all factors
+  - Create a begin method and categorize method, which store the
+  start location and reset all factors
   - Add to data struct vectors of groupings for countries
-  - Comment out some countries in data that are small (e.g. vatican city/vanuatu/monaco etc.)
+  - Comment out some countries in data that are small (e.g.
+  Vatican City/Vanuatu/Monaco etc.)
   
 - **04/29/2020** Debug errors with ImGui ListBox
   - Display list box of all countries
-  - Add functionality to dynamically change the displayed name and index in ImGui
+  - Add functionality to dynamically change the displayed name and index in
+  ImGui
   - Refactor CategorizeLoc() to use created vectors
   
 - **04/30/2020** Refactor char* to std::strings to fix some map key errors
@@ -60,17 +65,27 @@
   
 - **05/02/2020** Refactor data to work from txt files
   - Convert adding data directly to loading from a file
-  - Implement engine::Begin(), which resets all numbers and sets the starting location
+  - Implement engine::Begin(), which resets all numbers and sets the
+   starting location
   - Start creating engine::UpdateInfections()
     - Updates infection numbers and graphically models them
     - This is where consideration of all data, factors, etc. come into play
     
 - **05/03/2020** Fix start/pause features
-  - Initialize and reset the engine instead, so start pause is only called once the simulation has begun
-  - Implement basic functionality for actual spread, cure, infection probabilities
+  - Initialize and reset the engine instead, so start pause is only called
+  once the simulation has begun
+  - Implement basic functionality for actual spread, cure, infection
+  probabilities
   - Implement logistic growth equations for spread (need to debug)
   
 - **05/04/2020** Implement scientifically accurate growth curves
   - Max infections based on R0 and index
   - Fix issues with logistic growth
   - Replace in line constants with constant values
+  
+- **05/05/2020** Refactor CategorizeLoc to use a map instead
+of parsing every vector
+  - Clean up code in data, engine, and simulation.h/.cc
+  - Implement tests in engine
+  - Create PROPOSAL.md, update README.md
+  - Fix lines longer than 80 characters
