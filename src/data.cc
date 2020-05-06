@@ -9,14 +9,16 @@
 namespace data {
 
 Data::Data() {
+  //Populate all data in constructor
   PopulateRegions();
   PopulateAirports();
   PopulateVuln();
   PopulateRegionVuln();
 }
 
-//Populates the regions into the regional vectors, and stores them into a map
+//Populates the regions into the regional vectors,and stores them into a map
 void Data::PopulateRegions() {
+  //Group countries in to their region vectors
   northern_south_america.emplace_back("Colombia");
   northern_south_america.emplace_back("Venezuela");
   northern_south_america.emplace_back("Guyana");
@@ -235,68 +237,125 @@ void Data::PopulateRegions() {
   italy.emplace_back("San Marino");
   italy.emplace_back("Malta");
 
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Northern South America", northern_south_america));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Southern South America", southern_south_america));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Western South America", western_south_america));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Scandinavia", scandinavia));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Russia Area", russia));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Germany Area", germany));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("France Area", france));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Spain Area", spain));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Ukraine Area", ukraine));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Central Europe", central_europe));
+  //Insert all the vectors into a map of string (Region name) to vector
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Northern South America",
+    northern_south_america));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Southern South America",
+    southern_south_america));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Western South America",
+    western_south_america));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Scandinavia",
+    scandinavia));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Russia Area",
+    russia));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Germany Area",
+    germany));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("France Area",
+    france));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Spain Area",
+    spain));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Ukraine Area",
+    ukraine));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Central Europe",
+    central_europe));
 
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Eastern Europe", eastern_europe));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Central Africa", central_africa));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Southern Africa", southern_africa));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Western Africa", western_africa));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("North Africa", north_africa));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Middle East", middle_east));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("India Area", india));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Pakistan Area", pakistan));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Stans", stans));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Southeast Asia", southeast_asia));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Eastern Europe",
+    eastern_europe));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Central Africa",
+    central_africa));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Southern Africa",
+    southern_africa));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Western Africa",
+    western_africa));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("North Africa",
+    north_africa));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Middle East",
+    middle_east));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("India Area",
+    india));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Pakistan Area",
+    pakistan));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Stans",
+    stans));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Southeast Asia",
+    southeast_asia));
 
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Indonesia Area", indonesia));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Australia Area", australia));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("China Area", china));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Central America", central_america));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Caribbean", caribbean));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("UK", uk));
-  reg_name_to_vec_.insert(std::pair<std::string, std::vector<std::string>>("Italy Area", italy));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Indonesia Area",
+    indonesia));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Australia Area",
+    australia));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("China Area",
+    china));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Central America",
+    central_america));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Caribbean",
+    caribbean));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("UK",
+    uk));
+  reg_name_to_vec_.insert(std::pair<std::string,
+    std::vector<std::string>>("Italy Area",
+    italy));
 }
-//Populate airports_
+
+//Populate airports_ from file
 void Data::PopulateAirports() {
   //Coordinates to draw the airports at
   //This was obtained from latlng of all the
-  //airports, and converting them to a 2d map
+  //airports,and converting them to a 2d map
 
   //Open file
   std::ifstream airport_loc("resources/airports.txt");
 
   //Verify file was opened
   if (!airport_loc) {
-    std::cerr << "A file could not be loaded properly";
+    std::cerr << "Airport file could not be loaded properly";
     exit(1);
   }
 
   //Coordinates of each airport
-  int x, y;
+  int x,y;
 
   //Add each airport to airports
   while (airport_loc >> x >> y) {
-    airports.push_back(std::array<int, 2>({x, y}));
+    airports.push_back(std::array<int,2>({x,y}));
   }
 }
-//Populate vuln_index and adjusted_vuln_index
+
+//Populate vuln_index and adjusted_vuln_index from file
 void Data::PopulateVuln() {
   //Load the countries and indices files
   std::ifstream countries("resources/countries.txt");
   std::ifstream indices("resources/indices.txt");
 
-  //If they fail, exit the program and print an error message
+  //If they fail,exit the program and print an error message
   if (!countries || !indices) {
-    std::cerr << "A file could not be loaded properly";
+    std::cerr << "Map file could not be loaded properly";
     exit(1);
   }
 
@@ -304,16 +363,16 @@ void Data::PopulateVuln() {
   std::string country;
   float index;
   
-  //For each set of countries and indices, add them to vuln index
+  //For each set of countries and indices,add them to vuln index
   while (indices >> index) {
-    std::getline(countries, country);
-    vuln_index_.insert(std::pair<std::string, float>(country, index));
+    std::getline(countries,country);
+    vuln_index_.insert(std::pair<std::string,float>(country,index));
   }
   
-  //Adjust these indices from [0,1] to [.25, .75]
+  //Adjust these indices from [0,1] to [.25,.75]
   for (const auto& pair : vuln_index_) {
     adjusted_vuln_index_.insert(
-        std::pair<std::string, float>(pair.first, (pair.second / 2) + .25));
+        std::pair<std::string,float>(pair.first,(pair.second / 2) + .25));
   }
 }
 
@@ -324,21 +383,22 @@ void Data::PopulateRegionVuln() {
     //If the country is its own region
     if (CategorizeLoc(pair.first) == pair.first) {
       vuln_by_region_.insert(
-          std::pair<std::string, float>(pair.first, pair.second));
+          std::pair<std::string,float>(pair.first,pair.second));
     } else {
       bool found = false;
       for (const auto& other_pairs : vuln_by_region_) {
-        //If the region has been calculated, flag it
+        //If the region has been calculated,flag it
         if (other_pairs.first == CategorizeLoc(pair.first)) {
           found = true;
         }
       }
+
       //If not flagged, calculate and add the region
       if (!found) {
         float average =
             ComputeAvgScore(reg_name_to_vec_.at(CategorizeLoc(pair.first)));
         vuln_by_region_.insert(
-            std::pair<std::string, float>(CategorizeLoc(pair.first), average));
+            std::pair<std::string,float>(CategorizeLoc(pair.first),average));
       }
     }
   }
@@ -357,96 +417,13 @@ float Data::ComputeAvgScore(const std::vector<std::string>& region) {
 
 //Categorizes location from country to region
 std::string Data::CategorizeLoc(const std::string& country) {
-  std::string to_return;
-  if (std::count(northern_south_america.begin(),
-      northern_south_america.end(), country) != 0) {
-    to_return = "Northern South America";
-  } else if (std::count(western_south_america.begin(),
-      western_south_america.end(), country) != 0) {
-    to_return = "Western South America";
-  } else if (std::count(southern_south_america.begin(),
-      southern_south_america.end(), country) != 0) {
-    to_return = "Southern South America";
-  } else if (std::count(scandinavia.begin(),
-      scandinavia.end(), country) != 0) {
-    to_return = "Scandinavia";
-  } else if (std::count(russia.begin(),
-      russia.end(), country) != 0) {
-    to_return = "Russia Area";
-  } else if (std::count(germany.begin(),
-      germany.end(), country) != 0) {
-    to_return = "Germany Area";
-  } else if (std::count(france.begin(),
-      france.end(), country) != 0) {
-    to_return = "France Area";
-  } else if (std::count(spain.begin(),
-      spain.end(), country) != 0) {
-    to_return = "Spain Area";
-  } else if (std::count(ukraine.begin(), ukraine.end(), country) != 0) {
-    to_return = "Ukraine Area";
-  } else if (std::count(central_europe.begin(),
-      central_europe.end(), country) != 0) {
-    to_return = "Central Europe";
-  } else if (std::count(eastern_europe.begin(),
-      eastern_europe.end(), country) != 0) {
-    to_return = "Eastern Europe";
-  } else if (std::count(central_africa.begin(),
-      central_africa.end(), country) != 0) {
-    to_return = "Central Africa";
-  } else if (std::count(southern_africa.begin(),
-      southern_africa.end(), country) != 0) {
-    to_return = "Southern Africa";
-  } else if (std::count(western_africa.begin(),
-      western_africa.end(), country) != 0) {
-    to_return = "Western Africa";
-  } else if (std::count(north_africa.begin(),
-      north_africa.end(), country) != 0) {
-    to_return = "North Africa";
-  } else if (std::count(middle_east.begin(),
-      middle_east.end(), country) != 0) {
-    to_return = "Middle East";
-  } else if (std::count(india.begin(), india.end(), country) != 0) {
-    to_return = "India Area";
-  } else if (std::count(pakistan.begin(), pakistan.end(), country) != 0) {
-    to_return = "Pakistan Area";
-  } else if (std::count(stans.begin(), stans.end(), country) != 0) {
-    to_return = "Stans";
-  } else if (std::count(southeast_asia.begin(),
-      southeast_asia.end(), country) != 0) {
-    to_return = "Southeast Asia";
-  } else if (std::count(indonesia.begin(),
-      indonesia.end(), country) != 0) {
-    to_return = "Indonesia Area";
-  } else if (std::count(australia.begin(),
-      australia.end(), country) != 0) {
-    to_return = "Australia Area";
-  } else if (std::count(china.begin(), china.end(), country) != 0) {
-    to_return = "China Area";
-  } else if (std::count(central_america.begin(),
-      central_america.end(), country) != 0) {
-    to_return = "Central America";
-  } else if (std::count(caribbean.begin(), caribbean.end(), country) != 0) {
-    to_return = "Caribbean";
-  } else if (std::count(uk.begin(), uk.end(), country) != 0) {
-    to_return = "UK";
-  } else if (std::count(italy.begin(), italy.end(), country) != 0) {
-    to_return = "Italy Area";
-  } else {
-    to_return = country;
-  }
-
-  /*
-  std::string to_return;
-
-  for (const auto& pair : reg_name_to_vec_) {
-    if (std::count(pair.second.begin(), pair.second.end(), country) != 0) {
-      to_return = pair.first;
-    } else {
-      to_return = country;
+ for (const auto& pair : reg_name_to_vec_) {
+    if (std::count(pair.second.begin(),pair.second.end(),country) != 0) {
+      return pair.first;
     }
   }
-  */
-  return to_return;
+
+  return country;
 }
 
-}
+} //namespace data

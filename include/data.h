@@ -17,17 +17,41 @@ class Data {
   //Map from strings to floats of the overall
   //calculated index of disease spread per country
   std::map<std::string, float> vuln_index_;
-  //Same as above, but adjusted to .25-.75 instead of 0-1
+
+  //Same as vuln_index_, but adjusted to .25-.75 instead of 0-1
   std::map<std::string, float> adjusted_vuln_index_;
+
   //List of all the airports by coordinates (adjusted from image)
   std::vector<std::array<int, 2>> airports;
+
   //Map of average vulnerability indices after categorization
   std::map<std::string, float> vuln_by_region_;
+
   //Map of region names as string to their vector
   std::map<std::string, std::vector<std::string>> reg_name_to_vec_;
 
   //Constructor calls populate methods
   Data();
+
+  //Input a location as a string, and return the categorized location
+  //which is the region country belongs to
+  std::string CategorizeLoc(const std::string& country);
+
+ private:
+  //Populates vuln_index_ and adjusted_vuln_index_ from file
+  void PopulateVuln();
+
+  //Populates vuln by region by using ComputeAvgScore
+  void PopulateRegionVuln();
+
+  //Populates airports_ into airports_ from file
+  void PopulateAirports();
+
+  //Populates regions vectors and store them in name_to_vec
+  void PopulateRegions();
+  
+  //Computes average vuln score of a region
+  float ComputeAvgScore(const std::vector<std::string>& region);
 
   //All the regions, as vectors, with their respective countries
   std::vector<std::string> northern_south_america;
@@ -57,20 +81,6 @@ class Data {
   std::vector<std::string> caribbean;
   std::vector<std::string> uk;
   std::vector<std::string> italy;
-
-  std::string CategorizeLoc(const std::string& country);
-
- private:
-  //Populates vuln_index_ and adjusted_vuln_index_
-  void PopulateVuln();
-  //Populates vuln by region by using ComputeAvgScore
-  void PopulateRegionVuln();
-  //Populates airports_ into airports_
-  void PopulateAirports();
-  //Populates regions vectors and store them in name_to_vec
-  void PopulateRegions();
-  //Computes average vuln score of a region
-  float ComputeAvgScore(const std::vector<std::string>& region);
 }; //Class data
 
 } //Namespace data
