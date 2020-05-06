@@ -64,7 +64,8 @@ class Engine {
   int pct_mult = 100;
 
   //Sets region details given inputs
-  void SetRegionDetails(const std::string& region, int x, int y, int size, const std::string& cont);
+  void SetRegionDetails(const std::string& region,
+      int x, int y, int size, const std::string& cont);
 
   float LogisticGrowth(const Region& r);
 
@@ -76,7 +77,7 @@ class Engine {
   float y0 = .0001;
 
  public:
-  //Method that is called when the game starts. This sets the starting location
+  //Called when the game starts. This sets the starting location
   //And resets other factors
   void Begin(const std::string& start_loc);
 

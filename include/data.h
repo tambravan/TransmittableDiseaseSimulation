@@ -14,7 +14,8 @@ namespace data {
 
 class Data {
  public:
-  //Map from strings to floats of the overall calculated index of disease spread per country
+  //Map from strings to floats of the overall
+  //calculated index of disease spread per country
   std::map<std::string, float> vuln_index_;
   //Same as above, but adjusted to .25-.75 instead of 0-1
   std::map<std::string, float> adjusted_vuln_index_;

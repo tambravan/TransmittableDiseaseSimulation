@@ -268,7 +268,8 @@ void Data::PopulateRegions() {
 //Populate airports_
 void Data::PopulateAirports() {
   //Coordinates to draw the airports at
-  //This was obtained from latlng of all the airports, and converting them to a 2d map
+  //This was obtained from latlng of all the
+  //airports, and converting them to a 2d map
 
   //Open file
   std::ifstream airport_loc("resources/airports.txt");
@@ -322,7 +323,8 @@ void Data::PopulateRegionVuln() {
   for (const auto& pair : adjusted_vuln_index_) {
     //If the country is its own region
     if (CategorizeLoc(pair.first) == pair.first) {
-      vuln_by_region_.insert(std::pair<std::string, float>(pair.first, pair.second));
+      vuln_by_region_.insert(
+          std::pair<std::string, float>(pair.first, pair.second));
     } else {
       bool found = false;
       for (const auto& other_pairs : vuln_by_region_) {
@@ -356,37 +358,52 @@ float Data::ComputeAvgScore(const std::vector<std::string>& region) {
 //Categorizes location from country to region
 std::string Data::CategorizeLoc(const std::string& country) {
   std::string to_return;
-  if (std::count(northern_south_america.begin(), northern_south_america.end(), country) != 0) {
+  if (std::count(northern_south_america.begin(),
+      northern_south_america.end(), country) != 0) {
     to_return = "Northern South America";
-  } else if (std::count(western_south_america.begin(), western_south_america.end(), country) != 0) {
+  } else if (std::count(western_south_america.begin(),
+      western_south_america.end(), country) != 0) {
     to_return = "Western South America";
-  } else if (std::count(southern_south_america.begin(), southern_south_america.end(), country) != 0) {
+  } else if (std::count(southern_south_america.begin(),
+      southern_south_america.end(), country) != 0) {
     to_return = "Southern South America";
-  } else if (std::count(scandinavia.begin(), scandinavia.end(), country) != 0) {
+  } else if (std::count(scandinavia.begin(),
+      scandinavia.end(), country) != 0) {
     to_return = "Scandinavia";
-  } else if (std::count(russia.begin(), russia.end(), country) != 0) {
+  } else if (std::count(russia.begin(),
+      russia.end(), country) != 0) {
     to_return = "Russia Area";
-  } else if (std::count(germany.begin(), germany.end(), country) != 0) {
+  } else if (std::count(germany.begin(),
+      germany.end(), country) != 0) {
     to_return = "Germany Area";
-  } else if (std::count(france.begin(), france.end(), country) != 0) {
+  } else if (std::count(france.begin(),
+      france.end(), country) != 0) {
     to_return = "France Area";
-  } else if (std::count(spain.begin(), spain.end(), country) != 0) {
+  } else if (std::count(spain.begin(),
+      spain.end(), country) != 0) {
     to_return = "Spain Area";
   } else if (std::count(ukraine.begin(), ukraine.end(), country) != 0) {
     to_return = "Ukraine Area";
-  } else if (std::count(central_europe.begin(), central_europe.end(), country) != 0) {
+  } else if (std::count(central_europe.begin(),
+      central_europe.end(), country) != 0) {
     to_return = "Central Europe";
-  } else if (std::count(eastern_europe.begin(), eastern_europe.end(), country) != 0) {
+  } else if (std::count(eastern_europe.begin(),
+      eastern_europe.end(), country) != 0) {
     to_return = "Eastern Europe";
-  } else if (std::count(central_africa.begin(), central_africa.end(), country) != 0) {
+  } else if (std::count(central_africa.begin(),
+      central_africa.end(), country) != 0) {
     to_return = "Central Africa";
-  } else if (std::count(southern_africa.begin(), southern_africa.end(), country) != 0) {
+  } else if (std::count(southern_africa.begin(),
+      southern_africa.end(), country) != 0) {
     to_return = "Southern Africa";
-  } else if (std::count(western_africa.begin(), western_africa.end(), country) != 0) {
+  } else if (std::count(western_africa.begin(),
+      western_africa.end(), country) != 0) {
     to_return = "Western Africa";
-  } else if (std::count(north_africa.begin(), north_africa.end(), country) != 0) {
+  } else if (std::count(north_africa.begin(),
+      north_africa.end(), country) != 0) {
     to_return = "North Africa";
-  } else if (std::count(middle_east.begin(), middle_east.end(), country) != 0) {
+  } else if (std::count(middle_east.begin(),
+      middle_east.end(), country) != 0) {
     to_return = "Middle East";
   } else if (std::count(india.begin(), india.end(), country) != 0) {
     to_return = "India Area";
@@ -394,15 +411,19 @@ std::string Data::CategorizeLoc(const std::string& country) {
     to_return = "Pakistan Area";
   } else if (std::count(stans.begin(), stans.end(), country) != 0) {
     to_return = "Stans";
-  } else if (std::count(southeast_asia.begin(), southeast_asia.end(), country) != 0) {
+  } else if (std::count(southeast_asia.begin(),
+      southeast_asia.end(), country) != 0) {
     to_return = "Southeast Asia";
-  } else if (std::count(indonesia.begin(), indonesia.end(), country) != 0) {
+  } else if (std::count(indonesia.begin(),
+      indonesia.end(), country) != 0) {
     to_return = "Indonesia Area";
-  } else if (std::count(australia.begin(), australia.end(), country) != 0) {
+  } else if (std::count(australia.begin(),
+      australia.end(), country) != 0) {
     to_return = "Australia Area";
   } else if (std::count(china.begin(), china.end(), country) != 0) {
     to_return = "China Area";
-  } else if (std::count(central_america.begin(), central_america.end(), country) != 0) {
+  } else if (std::count(central_america.begin(),
+      central_america.end(), country) != 0) {
     to_return = "Central America";
   } else if (std::count(caribbean.begin(), caribbean.end(), country) != 0) {
     to_return = "Caribbean";
@@ -414,6 +435,17 @@ std::string Data::CategorizeLoc(const std::string& country) {
     to_return = country;
   }
 
+  /*
+  std::string to_return;
+
+  for (const auto& pair : reg_name_to_vec_) {
+    if (std::count(pair.second.begin(), pair.second.end(), country) != 0) {
+      to_return = pair.first;
+    } else {
+      to_return = country;
+    }
+  }
+  */
   return to_return;
 }
 
