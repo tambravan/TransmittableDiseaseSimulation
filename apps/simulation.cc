@@ -90,12 +90,12 @@ void Simulation::draw() {
   //Create sliders for the UI
   //Speed slider
   ImGui::SliderFloat("Speed Multiplier", &speed_slider_,
-      e.speedmin, e.speedmax);
+      e.kSpeedMin, e.kSpeedMax);
 
   //Float slider for R0
   ImGui::SliderFloat(
       "R0 (contagiousness of disease)\nThis cannot be changed during sim",
-      &r_0_, e.r0min, e.r0max);
+      &r_0_, e.kR0Min, e.kR0Max);
 
   //Create pause/resume button
   if (ImGui::Button("Start/Pause")) {
@@ -168,9 +168,9 @@ void Simulation::draw() {
     const auto& region = pair.second;
 
     //Calculate the color to display
-    if (region.infected <= e.concern_thresh) {
+    if (region.infected <= e.kConcernThresh) {
         ci::gl::color(ci::Color(0, 1, 0));
-    } else if (region.infected <= e.critical_thresh) {
+    } else if (region.infected <= e.kCriticalThresh) {
         ci::gl::color(ci::Color(1, 1, 0));
     } else {
         ci::gl::color(ci::Color(1, 0, 0));

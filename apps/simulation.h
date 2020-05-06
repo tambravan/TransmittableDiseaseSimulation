@@ -47,7 +47,7 @@ class Simulation : public cinder::app::App {
   //Slider to accelerate or slow down simulation speed (ImGui)
   float speed_slider_;
 
-  //Bool representing if the game is paused
+  //Bool representing if the sim is paused
   bool is_paused_;
 
   //Int representing the starting country selected (ImGui listbox)
