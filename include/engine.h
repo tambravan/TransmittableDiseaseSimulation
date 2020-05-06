@@ -81,6 +81,8 @@ class Engine {
   //And resets other factors
   void Begin(const std::string& start_loc);
 
+  Engine();
+
   //Map of strings to regions for each region
   std::map<std::string, engine::Region> regions_;
 
@@ -98,7 +100,7 @@ class Engine {
   //Represents whether or not the simulation has been initialized
   bool has_started;
 
-  bool finished;
+  bool is_finished;
 
   float concern_thresh = .1;
   float critical_thresh = .25;

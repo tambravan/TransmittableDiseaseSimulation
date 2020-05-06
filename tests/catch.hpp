@@ -6559,12 +6559,12 @@ namespace Catch {
             template <typename Clock>
             struct ChronometerModel final : public ChronometerConcept {
                 void start() override { started = Clock::now(); }
-                void finish() override { finished = Clock::now(); }
+                void finish() override { is_finished = Clock::now(); }
 
-                ClockDuration<Clock> elapsed() const { return finished - started; }
+                ClockDuration<Clock> elapsed() const { return is_finished - started; }
 
                 TimePoint<Clock> started;
-                TimePoint<Clock> finished;
+                TimePoint<Clock> is_finished;
             };
         } // namespace Detail
 

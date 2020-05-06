@@ -14,7 +14,7 @@ void engine::Engine::Begin(const std::string& startloc) {
   start_loc = d.CategorizeLoc(startloc);
 
   has_started = true;
-  finished = false;
+  is_finished = false;
 
   //Reset infected counts
   for (auto& pair : regions_) {
@@ -160,13 +160,14 @@ void Engine::UpdateInfections() {
 
   bool ended = true;
   for (const auto& pair : regions_) {
-    if (prev_regions_.at(pair.first).infected != pair.second.infected) {
+    if (prev_regions_.at(pair.first).infected != pair.second.infected
+      || pair.second.infected == 0) {
       ended = false;
     }
   }
 
   if (ended) {
-    finished = true;
+    is_finished = true;
   }
 }
 
@@ -188,6 +189,11 @@ void Engine::PopulateMax() {
 
 void Engine::SetR0(float set_r0) {
   r0 = set_r0;
+}
+Engine::Engine() {
+  PopulateRegions();
+  has_started = false;
+  is_finished = false;
 }
 
 Region::Region() = default;

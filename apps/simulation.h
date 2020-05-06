@@ -11,41 +11,60 @@
 #include "engine.h"
 #include "data.h"
 
-using namespace cinder::gl;
-
 namespace simulation {
 
+//Class simulation, this is provided to us in the  cinder framework
 class Simulation : public cinder::app::App {
  public:
+  //Default constructor
   Simulation();
+
+  //Setup initializes fields such as the initial positions of sliders,
+  //As well as populates data and initializes ImGui
   void setup() override;
+
+  //Update is repeatedly called, and this takes care of updating all values
+  //Such as infection counts, infected countries, pausing the sim
   void update() override;
+
+  //Draw draws out the map, heatmap, and all factors in the Gui. Also
+  //Called repeatedly
   void draw() override;
+
   //Pauses the simulation, handler for the start/pause button
   void StartPause();
 
  private:
   //Texture for the worldmap_ drawn in background
   ci::gl::TextureRef worldmap_;
+
   //Texture for airport logos
   ci::gl::TextureRef airport_;
-  //R0 value for the disease
+
+  //R0 value for the disease (controlled by ImGui slider)
   float r_0_;
-  //Slider to accelerate or slow down simulation speed
+
+  //Slider to accelerate or slow down simulation speed (ImGui)
   float speed_slider_;
+
   //Bool representing if the game is paused
   bool is_paused_;
+
+  //Int representing the starting country selected (ImGui listbox)
+  int starting_country_;
+
   //Instance of the Data class with all the airport/index data
   data::Data d;
-  //Int representing the starting country selected
-  int starting_country_;
-  //Countries vector
+
+  //Countries vector - note char* instead of std::string due to ImGui
+  //Compatibility issues with std
   std::vector<const char*> countries_;
 
   //Engine instance
   engine::Engine e;
 
-  int port_width = 10;
+  //Represents the width of airports to be drawn
+  int kPortWidth = 10;
 };
 
 }  // namespace simulation
